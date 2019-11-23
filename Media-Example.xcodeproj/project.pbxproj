@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,20 @@
 		B97D91482388772000A617DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97D91472388772000A617DC /* Assets.xcassets */; };
 		B97D914B2388772000A617DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97D914A2388772000A617DC /* Preview Assets.xcassets */; };
 		B97D914E2388772000A617DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97D914C2388772000A617DC /* LaunchScreen.storyboard */; };
+		B97D915A2388782E00A617DC /* Media in Frameworks */ = {isa = PBXBuildFile; productRef = B97D91592388782E00A617DC /* Media */; };
+		B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */; };
+		B999836823898FA200F74BC1 /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836723898FA200F74BC1 /* AlbumsView.swift */; };
+		B999836A2389908900F74BC1 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983692389908900F74BC1 /* AlbumView.swift */; };
+		B999836C2389933300F74BC1 /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836B2389933300F74BC1 /* PhotosView.swift */; };
+		B999836E2389933900F74BC1 /* AudiosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836D2389933900F74BC1 /* AudiosView.swift */; };
+		B99983702389934300F74BC1 /* LivePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836F2389934300F74BC1 /* LivePhotosView.swift */; };
+		B99983722389934800F74BC1 /* VideosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983712389934800F74BC1 /* VideosView.swift */; };
+		B99983742389938200F74BC1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983732389938200F74BC1 /* Extensions.swift */; };
+		B9998376238995E200F74BC1 /* PhotosUILivePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9998375238995E200F74BC1 /* PhotosUILivePhotoView.swift */; };
+		B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983772389C83D00F74BC1 /* LivePhotoView.swift */; };
+		B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983792389EDA000F74BC1 /* PhotoView.swift */; };
+		B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837B2389EFA400F74BC1 /* VideoView.swift */; };
+		B999837E2389EFB400F74BC1 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837D2389EFB400F74BC1 /* AVPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +38,21 @@
 		B97D914A2388772000A617DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B97D914D2388772000A617DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B97D914F2388772000A617DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B97D91552388775400A617DC /* Media-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Media-Example.entitlements"; sourceTree = "<group>"; };
+		B97D91572388782500A617DC /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
+		B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsOverviewView.swift; sourceTree = "<group>"; };
+		B999836723898FA200F74BC1 /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
+		B99983692389908900F74BC1 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		B999836B2389933300F74BC1 /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
+		B999836D2389933900F74BC1 /* AudiosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosView.swift; sourceTree = "<group>"; };
+		B999836F2389934300F74BC1 /* LivePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotosView.swift; sourceTree = "<group>"; };
+		B99983712389934800F74BC1 /* VideosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosView.swift; sourceTree = "<group>"; };
+		B99983732389938200F74BC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B9998375238995E200F74BC1 /* PhotosUILivePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUILivePhotoView.swift; sourceTree = "<group>"; };
+		B99983772389C83D00F74BC1 /* LivePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoView.swift; sourceTree = "<group>"; };
+		B99983792389EDA000F74BC1 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		B999837B2389EFA400F74BC1 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		B999837D2389EFB400F74BC1 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97D915A2388782E00A617DC /* Media in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +70,10 @@
 		B97D91352388771D00A617DC = {
 			isa = PBXGroup;
 			children = (
+				B97D91572388782500A617DC /* Media */,
 				B97D91402388771D00A617DC /* Media-Example */,
 				B97D913F2388771D00A617DC /* Products */,
+				B97D91582388782E00A617DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,9 +88,12 @@
 		B97D91402388771D00A617DC /* Media-Example */ = {
 			isa = PBXGroup;
 			children = (
+				B97D915B238986CC00A617DC /* Views */,
+				B97D91552388775400A617DC /* Media-Example.entitlements */,
 				B97D91412388771D00A617DC /* AppDelegate.swift */,
 				B97D91432388771D00A617DC /* SceneDelegate.swift */,
 				B97D91452388771D00A617DC /* ContentView.swift */,
+				B99983732389938200F74BC1 /* Extensions.swift */,
 				B97D91472388772000A617DC /* Assets.xcassets */,
 				B97D914C2388772000A617DC /* LaunchScreen.storyboard */,
 				B97D914F2388772000A617DC /* Info.plist */,
@@ -73,6 +108,32 @@
 				B97D914A2388772000A617DC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B97D91582388782E00A617DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B97D915B238986CC00A617DC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */,
+				B999836723898FA200F74BC1 /* AlbumsView.swift */,
+				B99983692389908900F74BC1 /* AlbumView.swift */,
+				B999836D2389933900F74BC1 /* AudiosView.swift */,
+				B999837D2389EFB400F74BC1 /* AVPlayerView.swift */,
+				B999836F2389934300F74BC1 /* LivePhotosView.swift */,
+				B99983772389C83D00F74BC1 /* LivePhotoView.swift */,
+				B9998375238995E200F74BC1 /* PhotosUILivePhotoView.swift */,
+				B999836B2389933300F74BC1 /* PhotosView.swift */,
+				B99983792389EDA000F74BC1 /* PhotoView.swift */,
+				B99983712389934800F74BC1 /* VideosView.swift */,
+				B999837B2389EFA400F74BC1 /* VideoView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +152,9 @@
 			dependencies = (
 			);
 			name = "Media-Example";
+			packageProductDependencies = (
+				B97D91592388782E00A617DC /* Media */,
+			);
 			productName = "Media-Example";
 			productReference = B97D913E2388771D00A617DC /* Media-Example.app */;
 			productType = "com.apple.product-type.application";
@@ -146,9 +210,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B999836A2389908900F74BC1 /* AlbumView.swift in Sources */,
+				B99983702389934300F74BC1 /* LivePhotosView.swift in Sources */,
+				B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */,
 				B97D91422388771D00A617DC /* AppDelegate.swift in Sources */,
 				B97D91442388771D00A617DC /* SceneDelegate.swift in Sources */,
+				B999836E2389933900F74BC1 /* AudiosView.swift in Sources */,
+				B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */,
+				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
+				B99983722389934800F74BC1 /* VideosView.swift in Sources */,
+				B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */,
+				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,
 				B97D91462388771D00A617DC /* ContentView.swift in Sources */,
+				B999837E2389EFB400F74BC1 /* AVPlayerView.swift in Sources */,
+				B99983742389938200F74BC1 /* Extensions.swift in Sources */,
+				B999836823898FA200F74BC1 /* AlbumsView.swift in Sources */,
+				B9998376238995E200F74BC1 /* PhotosUILivePhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,9 +361,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "Media-Example/Media-Example.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development: Christian Elies (WK3GQPZZF8)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Media-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = 766K8ALVVD;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Media-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -295,6 +377,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.crelies.Media-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.crelies.*";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,9 +389,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = "Media-Example/Media-Example.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Christian Elies (766K8ALVVD)";
+				CODE_SIGN_STYLE = Manual;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Media-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = 766K8ALVVD;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Media-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -315,6 +404,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "de.crelies.Media-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.crelies.*";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -342,6 +433,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B97D91592388782E00A617DC /* Media */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Media;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B97D91362388771D00A617DC /* Project object */;
 }
