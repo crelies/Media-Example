@@ -18,7 +18,12 @@ struct LivePhotoView: View {
 
     var body: some View {
         Group {
+            #if os(macOS) || targetEnvironment(macCatalyst)
+            Text("Live Photo objects are available only when editing Live Photo content in a photo editing extension that runs in the Photos app.")
+                .padding(.horizontal)
+            #else
             phLivePhoto.map { PhotosUILivePhotoView(phLivePhoto: $0) }
+            #endif
 
             error.map { Text($0.localizedDescription) }
         }.onAppear {
