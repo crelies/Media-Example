@@ -19,7 +19,7 @@ struct AlbumsOverviewView: View {
 
     var body: some View {
         NavigationView {
-            if permissionGranted {
+            if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
                         NavigationLink(destination: AlbumsView(albums: userAlbums)) {
@@ -49,6 +49,14 @@ struct AlbumsOverviewView: View {
                         Text("Trigger permission request")
                     }
                 }
+            }
+        }.onAppear {
+            if !Media.isAccessAllowed {
+                self.requestPermission()
+            } else {
+                self.userAlbums = Albums.user
+                self.cloudAlbums = Albums.cloud
+                self.smartAlbums = Albums.smart
             }
         }
     }
