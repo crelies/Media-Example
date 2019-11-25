@@ -27,7 +27,37 @@
 		B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983792389EDA000F74BC1 /* PhotoView.swift */; };
 		B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837B2389EFA400F74BC1 /* VideoView.swift */; };
 		B999837E2389EFB400F74BC1 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837D2389EFB400F74BC1 /* AVPlayerView.swift */; };
+		B9A3D27A238A79E700648070 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3D279238A79E700648070 /* PhotosUI.framework */; };
+		B9A3D27C238A79E700648070 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3D27B238A79E700648070 /* Photos.framework */; };
+		B9A3D27F238A79E700648070 /* PhotoEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3D27E238A79E700648070 /* PhotoEditingViewController.swift */; };
+		B9A3D282238A79E700648070 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A3D280238A79E700648070 /* MainInterface.storyboard */; };
+		B9A3D286238A79E700648070 /* PhotoEditing-Example.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B9A3D278238A79E700648070 /* PhotoEditing-Example.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3D28B238ACDE900648070 /* ActivityView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9A3D284238A79E700648070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B97D91362388771D00A617DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9A3D277238A79E700648070;
+			remoteInfo = "PhotoEditing-Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B9A3D287238A79E700648070 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B9A3D286238A79E700648070 /* PhotoEditing-Example.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B97D913E2388771D00A617DC /* Media-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +83,13 @@
 		B99983792389EDA000F74BC1 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		B999837B2389EFA400F74BC1 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		B999837D2389EFB400F74BC1 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
+		B9A3D278238A79E700648070 /* PhotoEditing-Example.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PhotoEditing-Example.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9A3D279238A79E700648070 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		B9A3D27B238A79E700648070 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		B9A3D27E238A79E700648070 /* PhotoEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingViewController.swift; sourceTree = "<group>"; };
+		B9A3D281238A79E700648070 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B9A3D283238A79E700648070 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9A3D28B238ACDE900648070 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +101,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9A3D275238A79E700648070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9A3D27A238A79E700648070 /* PhotosUI.framework in Frameworks */,
+				B9A3D27C238A79E700648070 /* Photos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +118,7 @@
 			children = (
 				B97D91572388782500A617DC /* Media */,
 				B97D91402388771D00A617DC /* Media-Example */,
+				B9A3D27D238A79E700648070 /* PhotoEditing-Example */,
 				B97D913F2388771D00A617DC /* Products */,
 				B97D91582388782E00A617DC /* Frameworks */,
 			);
@@ -81,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B97D913E2388771D00A617DC /* Media-Example.app */,
+				B9A3D278238A79E700648070 /* PhotoEditing-Example.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +161,8 @@
 		B97D91582388782E00A617DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B9A3D279238A79E700648070 /* PhotosUI.framework */,
+				B9A3D27B238A79E700648070 /* Photos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,6 +170,7 @@
 		B97D915B238986CC00A617DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B9A3D28B238ACDE900648070 /* ActivityView.swift */,
 				B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */,
 				B999836723898FA200F74BC1 /* AlbumsView.swift */,
 				B99983692389908900F74BC1 /* AlbumView.swift */,
@@ -136,6 +187,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B9A3D27D238A79E700648070 /* PhotoEditing-Example */ = {
+			isa = PBXGroup;
+			children = (
+				B9A3D27E238A79E700648070 /* PhotoEditingViewController.swift */,
+				B9A3D280238A79E700648070 /* MainInterface.storyboard */,
+				B9A3D283238A79E700648070 /* Info.plist */,
+			);
+			path = "PhotoEditing-Example";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,10 +207,12 @@
 				B97D913A2388771D00A617DC /* Sources */,
 				B97D913B2388771D00A617DC /* Frameworks */,
 				B97D913C2388771D00A617DC /* Resources */,
+				B9A3D287238A79E700648070 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B9A3D285238A79E700648070 /* PBXTargetDependency */,
 			);
 			name = "Media-Example";
 			packageProductDependencies = (
@@ -158,6 +221,23 @@
 			productName = "Media-Example";
 			productReference = B97D913E2388771D00A617DC /* Media-Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B9A3D277238A79E700648070 /* PhotoEditing-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9A3D28A238A79E700648070 /* Build configuration list for PBXNativeTarget "PhotoEditing-Example" */;
+			buildPhases = (
+				B9A3D274238A79E700648070 /* Sources */,
+				B9A3D275238A79E700648070 /* Frameworks */,
+				B9A3D276238A79E700648070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PhotoEditing-Example";
+			productName = "PhotoEditing-Example";
+			productReference = B9A3D278238A79E700648070 /* PhotoEditing-Example.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -170,6 +250,9 @@
 				ORGANIZATIONNAME = "Christian Elies";
 				TargetAttributes = {
 					B97D913D2388771D00A617DC = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					B9A3D277238A79E700648070 = {
 						CreatedOnToolsVersion = 11.2;
 					};
 				};
@@ -188,6 +271,7 @@
 			projectRoot = "";
 			targets = (
 				B97D913D2388771D00A617DC /* Media-Example */,
+				B9A3D277238A79E700648070 /* PhotoEditing-Example */,
 			);
 		};
 /* End PBXProject section */
@@ -200,6 +284,14 @@
 				B97D914E2388772000A617DC /* LaunchScreen.storyboard in Resources */,
 				B97D914B2388772000A617DC /* Preview Assets.xcassets in Resources */,
 				B97D91482388772000A617DC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9A3D276238A79E700648070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9A3D282238A79E700648070 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +311,7 @@
 				B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */,
 				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
 				B99983722389934800F74BC1 /* VideosView.swift in Sources */,
+				B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */,
 				B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */,
 				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,
 				B97D91462388771D00A617DC /* ContentView.swift in Sources */,
@@ -229,7 +322,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9A3D274238A79E700648070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9A3D27F238A79E700648070 /* PhotoEditingViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9A3D285238A79E700648070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = B9A3D277238A79E700648070 /* PhotoEditing-Example */;
+			targetProxy = B9A3D284238A79E700648070 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B97D914C2388772000A617DC /* LaunchScreen.storyboard */ = {
@@ -238,6 +348,14 @@
 				B97D914D2388772000A617DC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B9A3D280238A79E700648070 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9A3D281238A79E700648070 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -360,6 +478,7 @@
 		B97D91532388772000A617DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Media-Example/Media-Example.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development: Christian Elies (WK3GQPZZF8)";
@@ -388,6 +507,7 @@
 		B97D91542388772000A617DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Media-Example/Media-Example.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution: Christian Elies (766K8ALVVD)";
@@ -411,6 +531,49 @@
 			};
 			name = Release;
 		};
+		B9A3D288238A79E700648070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development: Christian Elies (WK3GQPZZF8)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 766K8ALVVD;
+				INFOPLIST_FILE = "PhotoEditing-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.crelies.Media-Example.PhotoEditing-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.crelies.*";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9A3D289238A79E700648070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Distribution: Christian Elies (766K8ALVVD)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 766K8ALVVD;
+				INFOPLIST_FILE = "PhotoEditing-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.crelies.Media-Example.PhotoEditing-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc de.crelies.*";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -428,6 +591,15 @@
 			buildConfigurations = (
 				B97D91532388772000A617DC /* Debug */,
 				B97D91542388772000A617DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9A3D28A238A79E700648070 /* Build configuration list for PBXNativeTarget "PhotoEditing-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9A3D288238A79E700648070 /* Debug */,
+				B9A3D289238A79E700648070 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -50,8 +50,6 @@ struct AlbumsOverviewView: View {
                     }
                 }
             }
-        }.onAppear {
-
         }
     }
 }

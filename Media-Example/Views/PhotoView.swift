@@ -15,6 +15,7 @@ struct PhotoView: View {
     @State private var data: Data?
     @State private var image: UIImage?
     @State private var error: Error?
+    @State private var isShareSheetVisible = false
 
     var body: some View {
         Group {
@@ -30,6 +31,14 @@ struct PhotoView: View {
                     self.error = error
                 }
             }
-        }
+        }.navigationBarItems(trailing: Button(action: {
+            self.isShareSheetVisible = true
+        }) {
+            Text("Share")
+        }.sheet(isPresented: $isShareSheetVisible, onDismiss: {
+            self.isShareSheetVisible = false
+        }) {
+            self.data.map { UIImage(data: $0).map { ActivityView(activityItems: [$0], applicationActivities: []) } }
+        })
     }
 }
