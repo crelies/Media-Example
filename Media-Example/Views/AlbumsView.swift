@@ -12,18 +12,25 @@ import SwiftUI
 struct AlbumsView: View {
     @State private var isAddViewVisible = false
     @State private var isAddConfirmationViewVisible = false
+    @State private var isDeleteViewVisible = false
     @State private var albumName = ""
 
     @State private var previousAddResult: Result<Void, Error>?
+    @State private var indexSetToDelete: IndexSet = IndexSet()
 
     let albums: [Album]
 
     var body: some View {
-        List(albums) { album in
-            album.localizedTitle.map { title in
-                NavigationLink(destination: AlbumView(album: album)) {
-                    Text(title)
+        List {
+            ForEach(albums) { album in
+                album.localizedTitle.map { title in
+                    NavigationLink(destination: AlbumView(album: album)) {
+                        Text(title)
+                    }
                 }
+            }.onDelete { indexSet in
+                self.indexSetToDelete = indexSet
+                self.isDeleteViewVisible = true
             }
         }.navigationBarTitle(Text("Album list"), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
@@ -59,7 +66,8 @@ struct AlbumsView: View {
                     Image(systemName: "xmark")
                 })
             }.navigationViewStyle(StackNavigationViewStyle())
-        }).alert(isPresented: $isAddConfirmationViewVisible) {
+        })
+        .alert(isPresented: $isAddConfirmationViewVisible) {
             switch previousAddResult {
             case .success:
                 return Self.alert(title: "Success", message: "Album added")
@@ -69,12 +77,44 @@ struct AlbumsView: View {
                 return Self.alert(title: "Failure", message: "An unknown error occurred")
             }
         }
+        .alert(isPresented: $isDeleteViewVisible) {
+            self.deleteConfirmationAlert(indexSetToDelete: self.indexSetToDelete)
+        }
     }
 }
 
 extension AlbumsView {
     private static func alert(title: String, message: String) -> Alert {
         Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("OK")))
+    }
+
+    private func deleteConfirmationAlert(indexSetToDelete: IndexSet) -> Alert {
+        var albumsToDelete: [Album] = []
+        for index in indexSetToDelete {
+            guard index >= 0, index < albums.count else {
+                continue
+            }
+
+            let album = albums[index]
+            albumsToDelete.append(album)
+        }
+
+        let albumsToDeleteSummary = albumsToDelete.map { $0.localizedTitle ?? "Unknown title" }.joined(separator: ", ")
+
+        return Alert(title: Text("Are you sure?"), message: Text("[\(albumsToDeleteSummary)] will be deleted"), primaryButton: .default(Text("Yes")) {
+            guard !albumsToDelete.isEmpty else {
+                self.indexSetToDelete = IndexSet()
+                self.isDeleteViewVisible = false
+                return
+            }
+
+            albumsToDelete.forEach { $0.delete { _ in } }
+
+            self.indexSetToDelete = IndexSet()
+            self.isDeleteViewVisible = false
+        }, secondaryButton: .cancel() {
+            self.isDeleteViewVisible = false
+        })
     }
 }
 
