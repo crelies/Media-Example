@@ -17,6 +17,11 @@ struct AlbumsOverviewView: View {
     @State private var permissionGranted: Bool = false
     @State private var permissionError: PermissionError?
 
+    @State private var isCameraViewVisible = false
+    @State private var isLivePhotoCameraViewVisible = false
+    @State private var isPhotoCameraViewVisible = false
+    @State private var isVideoCameraViewVisible = false
+
     var body: some View {
         NavigationView {
             if permissionGranted || Media.isAccessAllowed {
@@ -36,6 +41,56 @@ struct AlbumsOverviewView: View {
                     Section {
                         NavigationLink(destination: AlbumsView(albums: smartAlbums)) {
                             Text("\(smartAlbums.count) Smart albums")
+                        }
+                    }
+
+                    Section {
+                        Button(action: {
+                            self.isCameraViewVisible = true
+                        }) {
+                            Text("Camera.view")
+                        }.sheet(isPresented: $isCameraViewVisible, onDismiss: {
+                            self.isCameraViewVisible = false
+                        }) {
+                            try? Camera.view { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isLivePhotoCameraViewVisible = true
+                        }) {
+                            Text("LivePhoto.camera")
+                        }.sheet(isPresented: $isLivePhotoCameraViewVisible, onDismiss: {
+                            self.isLivePhotoCameraViewVisible = false
+                        }) {
+                            try? LivePhoto.camera { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isPhotoCameraViewVisible = true
+                        }) {
+                            Text("Photo.camera")
+                        }.sheet(isPresented: $isPhotoCameraViewVisible, onDismiss: {
+                            self.isPhotoCameraViewVisible = false
+                        }) {
+                            try? Photo.camera { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isVideoCameraViewVisible = true
+                        }) {
+                            Text("Video.camera")
+                        }.sheet(isPresented: $isVideoCameraViewVisible, onDismiss: {
+                            self.isVideoCameraViewVisible = false
+                        }) {
+                            try? Video.camera { result in
+
+                            }
                         }
                     }
                 }.listStyle(GroupedListStyle())
