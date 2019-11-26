@@ -20,6 +20,7 @@ struct AlbumsOverviewView: View {
     @State private var isCameraViewVisible = false
     @State private var isLivePhotoCameraViewVisible = false
     @State private var isMediaBrowserViewVisible = false
+    @State private var isPhotoBrowserViewVisible = false
     @State private var isPhotoCameraViewVisible = false
     @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
@@ -79,6 +80,18 @@ struct AlbumsOverviewView: View {
                             self.isMediaBrowserViewVisible = false
                         }) {
                             try? Media.browser { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isPhotoBrowserViewVisible = true
+                        }) {
+                            Text("Photo.browser")
+                        }.sheet(isPresented: $isPhotoBrowserViewVisible, onDismiss: {
+                            self.isPhotoBrowserViewVisible = false
+                        }) {
+                            try? Photo.browser { result in
 
                             }
                         }
