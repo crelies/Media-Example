@@ -21,6 +21,7 @@ struct AlbumsOverviewView: View {
     @State private var isLivePhotoCameraViewVisible = false
     @State private var isMediaBrowserViewVisible = false
     @State private var isPhotoCameraViewVisible = false
+    @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
 
     var body: some View {
@@ -90,6 +91,18 @@ struct AlbumsOverviewView: View {
                             self.isPhotoCameraViewVisible = false
                         }) {
                             try? Photo.camera { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isVideoBrowserViewVisible = true
+                        }) {
+                            Text("Video.browser")
+                        }.sheet(isPresented: $isVideoBrowserViewVisible, onDismiss: {
+                            self.isVideoBrowserViewVisible = false
+                        }) {
+                            try? Video.browser { result in
 
                             }
                         }
