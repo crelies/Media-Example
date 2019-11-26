@@ -18,6 +18,7 @@ struct AlbumsOverviewView: View {
     @State private var permissionError: PermissionError?
 
     @State private var isCameraViewVisible = false
+    @State private var isLivePhotoBrowserViewVisible = false
     @State private var isLivePhotoCameraViewVisible = false
     @State private var isMediaBrowserViewVisible = false
     @State private var isPhotoBrowserViewVisible = false
@@ -56,6 +57,18 @@ struct AlbumsOverviewView: View {
                             self.isCameraViewVisible = false
                         }) {
                             try? Camera.view { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isLivePhotoBrowserViewVisible = true
+                        }) {
+                            Text("LivePhoto.browser")
+                        }.sheet(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
+                            self.isLivePhotoBrowserViewVisible = false
+                        }) {
+                            try? LivePhoto.browser { result in
 
                             }
                         }
