@@ -25,7 +25,6 @@
 		B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983772389C83D00F74BC1 /* LivePhotoView.swift */; };
 		B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983792389EDA000F74BC1 /* PhotoView.swift */; };
 		B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837B2389EFA400F74BC1 /* VideoView.swift */; };
-		B999837E2389EFB400F74BC1 /* AVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837D2389EFB400F74BC1 /* AVPlayerView.swift */; };
 		B9A3D27A238A79E700648070 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3D279238A79E700648070 /* PhotosUI.framework */; };
 		B9A3D27C238A79E700648070 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3D27B238A79E700648070 /* Photos.framework */; };
 		B9A3D27F238A79E700648070 /* PhotoEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3D27E238A79E700648070 /* PhotoEditingViewController.swift */; };
@@ -80,7 +79,6 @@
 		B99983772389C83D00F74BC1 /* LivePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePhotoView.swift; sourceTree = "<group>"; };
 		B99983792389EDA000F74BC1 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		B999837B2389EFA400F74BC1 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		B999837D2389EFB400F74BC1 /* AVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerView.swift; sourceTree = "<group>"; };
 		B9A3D278238A79E700648070 /* PhotoEditing-Example.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PhotoEditing-Example.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A3D279238A79E700648070 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		B9A3D27B238A79E700648070 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
@@ -173,7 +171,6 @@
 				B999836723898FA200F74BC1 /* AlbumsView.swift */,
 				B99983692389908900F74BC1 /* AlbumView.swift */,
 				B999836D2389933900F74BC1 /* AudiosView.swift */,
-				B999837D2389EFB400F74BC1 /* AVPlayerView.swift */,
 				B999836F2389934300F74BC1 /* LivePhotosView.swift */,
 				B99983772389C83D00F74BC1 /* LivePhotoView.swift */,
 				B999836B2389933300F74BC1 /* PhotosView.swift */,
@@ -312,7 +309,6 @@
 				B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */,
 				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,
 				B97D91462388771D00A617DC /* ContentView.swift in Sources */,
-				B999837E2389EFB400F74BC1 /* AVPlayerView.swift in Sources */,
 				B99983742389938200F74BC1 /* Extensions.swift in Sources */,
 				B999836823898FA200F74BC1 /* AlbumsView.swift in Sources */,
 			);
