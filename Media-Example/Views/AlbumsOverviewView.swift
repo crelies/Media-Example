@@ -157,6 +157,7 @@ struct AlbumsOverviewView: View {
                         }
                     }
                 }.listStyle(GroupedListStyle())
+                .navigationBarTitle("Examples")
             } else {
                 VStack(spacing: 20) {
                     self.permissionError.map { Text($0.localizedDescription) }
