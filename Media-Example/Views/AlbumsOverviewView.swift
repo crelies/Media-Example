@@ -62,18 +62,6 @@ struct AlbumsOverviewView: View {
                         }
 
                         Button(action: {
-                            self.isLivePhotoBrowserViewVisible = true
-                        }) {
-                            Text("LivePhoto.browser")
-                        }.sheet(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
-                            self.isLivePhotoBrowserViewVisible = false
-                        }) {
-                            try? LivePhoto.browser { result in
-
-                            }
-                        }
-
-                        Button(action: {
                             self.isLivePhotoCameraViewVisible = true
                         }) {
                             Text("LivePhoto.camera")
@@ -81,6 +69,44 @@ struct AlbumsOverviewView: View {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
                             try? LivePhoto.camera { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isPhotoCameraViewVisible = true
+                        }) {
+                            Text("Photo.camera")
+                        }.sheet(isPresented: $isPhotoCameraViewVisible, onDismiss: {
+                            self.isPhotoCameraViewVisible = false
+                        }) {
+                            try? Photo.camera { result in
+
+                            }
+                        }
+
+                        Button(action: {
+                            self.isVideoCameraViewVisible = true
+                        }) {
+                            Text("Video.camera")
+                        }.sheet(isPresented: $isVideoCameraViewVisible, onDismiss: {
+                            self.isVideoCameraViewVisible = false
+                        }) {
+                            try? Video.camera { result in
+
+                            }
+                        }
+                    }
+
+                    Section {
+                        Button(action: {
+                            self.isLivePhotoBrowserViewVisible = true
+                        }) {
+                            Text("LivePhoto.browser")
+                        }.sheet(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
+                            self.isLivePhotoBrowserViewVisible = false
+                        }) {
+                            try? LivePhoto.browser { result in
 
                             }
                         }
@@ -110,18 +136,6 @@ struct AlbumsOverviewView: View {
                         }
 
                         Button(action: {
-                            self.isPhotoCameraViewVisible = true
-                        }) {
-                            Text("Photo.camera")
-                        }.sheet(isPresented: $isPhotoCameraViewVisible, onDismiss: {
-                            self.isPhotoCameraViewVisible = false
-                        }) {
-                            try? Photo.camera { result in
-
-                            }
-                        }
-
-                        Button(action: {
                             self.isVideoBrowserViewVisible = true
                         }) {
                             Text("Video.browser")
@@ -129,18 +143,6 @@ struct AlbumsOverviewView: View {
                             self.isVideoBrowserViewVisible = false
                         }) {
                             try? Video.browser { result in
-
-                            }
-                        }
-
-                        Button(action: {
-                            self.isVideoCameraViewVisible = true
-                        }) {
-                            Text("Video.camera")
-                        }.sheet(isPresented: $isVideoCameraViewVisible, onDismiss: {
-                            self.isVideoCameraViewVisible = false
-                        }) {
-                            try? Video.camera { result in
 
                             }
                         }
