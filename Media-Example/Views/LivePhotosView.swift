@@ -17,7 +17,7 @@ struct LivePhotosView: View {
             NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
                 Text(livePhoto.phAsset.localIdentifier)
             }
-        }
+        }.navigationBarTitle("Live Photos", displayMode: .inline)
     }
 }
 

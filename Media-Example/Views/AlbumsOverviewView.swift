@@ -34,17 +34,26 @@ struct AlbumsOverviewView: View {
                         NavigationLink(destination: AlbumsView(albums: userAlbums)) {
                             Text("\(userAlbums.count) User albums")
                         }
-                    }
-
-                    Section {
                         NavigationLink(destination: AlbumsView(albums: cloudAlbums)) {
                             Text("\(cloudAlbums.count) Cloud albums")
+                        }
+                        NavigationLink(destination: AlbumsView(albums: smartAlbums)) {
+                            Text("\(smartAlbums.count) Smart albums")
                         }
                     }
 
                     Section {
-                        NavigationLink(destination: AlbumsView(albums: smartAlbums)) {
-                            Text("\(smartAlbums.count) Smart albums")
+                        NavigationLink(destination: AudiosView(audios: Audios.all)) {
+                            Text("All audios")
+                        }
+                        NavigationLink(destination: LivePhotosView(livePhotos: LivePhotos.all)) {
+                            Text("All live photos")
+                        }
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.all)) {
+                            Text("All photos")
+                        }
+                        NavigationLink(destination: VideosView(videos: Videos.all)) {
+                            Text("All videos")
                         }
                     }
 

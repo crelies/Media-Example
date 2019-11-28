@@ -17,7 +17,7 @@ struct PhotosView: View {
             NavigationLink(destination: PhotoView(photo: photo)) {
                 Text(photo.phAsset.localIdentifier)
             }
-        }
+        }.navigationBarTitle("Photos", displayMode: .inline)
     }
 }
 
