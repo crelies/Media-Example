@@ -13,28 +13,14 @@ import SwiftUI
 struct LivePhotoView: View {
     let livePhoto: LivePhoto
 
-    @State private var phLivePhoto: PHLivePhoto?
-    @State private var error: Error?
-
     var body: some View {
         Group {
             #if os(macOS) || targetEnvironment(macCatalyst)
             Text("Live Photo objects are available only when editing Live Photo content in a photo editing extension that runs in the Photos app.")
                 .padding(.horizontal)
             #else
-            phLivePhoto.map { PhotosUILivePhotoView(phLivePhoto: $0) }
+            livePhoto.view(size: CGSize(width: 400, height: 200))
             #endif
-
-            error.map { Text($0.localizedDescription) }
-        }.onAppear {
-            self.livePhoto.displayRepresentation(targetSize: CGSize(width: 400, height: 200)) { result in
-                switch result {
-                case .success(let livePhotoDisplayRepresentation):
-                    self.phLivePhoto = livePhotoDisplayRepresentation.livePhoto
-                case .failure(let error):
-                    self.error = error
-                }
-            }
         }
     }
 }
