@@ -58,6 +58,33 @@ struct AlbumsOverviewView: View {
                     }
 
                     Section {
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.depthEffect)) {
+                            Text("Photos.depthEffect")
+                        }
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.hdr)) {
+                            Text("Photos.hdr")
+                        }
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.panorama)) {
+                            Text("Photos.panorama")
+                        }
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.screenshot)) {
+                            Text("Photos.screenshot")
+                        }
+                    }
+
+                    Section {
+                        NavigationLink(destination: VideosView(videos: Videos.highFrameRates)) {
+                            Text("Videos.highFrameRates")
+                        }
+                        NavigationLink(destination: VideosView(videos: Videos.streams)) {
+                            Text("Videos.streams")
+                        }
+                        NavigationLink(destination: VideosView(videos: Videos.timelapses)) {
+                            Text("Videos.timelapses")
+                        }
+                    }
+
+                    Section {
                         Button(action: {
                             self.isCameraViewVisible = true
                         }) {
