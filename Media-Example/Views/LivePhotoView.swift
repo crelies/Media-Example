@@ -29,8 +29,8 @@ struct LivePhotoView: View {
         }.onAppear {
             self.livePhoto.displayRepresentation(targetSize: CGSize(width: 400, height: 200)) { result in
                 switch result {
-                case .success(let phLivePhoto):
-                    self.phLivePhoto = phLivePhoto
+                case .success(let livePhotoDisplayRepresentation):
+                    self.phLivePhoto = livePhotoDisplayRepresentation.livePhoto
                 case .failure(let error):
                     self.error = error
                 }
