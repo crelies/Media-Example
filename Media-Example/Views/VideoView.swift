@@ -11,34 +11,55 @@ import Media
 import SwiftUI
 
 struct VideoView: View {
-    @State private var exportSuccessful = false
+    private static var numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        return numberFormatter
+    }()
+
+    @State private var exportSuccessful: Bool?
+    @State private var progress: Float = 0
 
     let video: Video
 
     var body: some View {
         video.view
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Group {
+                if progress != 0 {
+                    Text("\(NSNumber(value: progress), formatter: Self.numberFormatter)")
+                }
+            }, trailing: Button(action: {
                 guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                     return
                 }
 
                 let fileURL = url.appendingPathComponent("\(UUID().uuidString)")
-                guard let exportDestination = try? Video.ExportDestination(url: fileURL, fileType: .mobile3GPP2) else {
+                guard let exportOptions = try? Video.ExportOptions(url: fileURL, fileType: .mov, quality: .low) else {
                     return
                 }
 
-                self.exportSuccessful = false
-                self.video.export(to: exportDestination, quality: .low) { result in
+                self.exportSuccessful = nil
+                self.progress = 0
+                self.video.export(exportOptions, progress: { progress in
+                    switch progress {
+                    case .completed:
+                        self.progress = 0
+                    case .pending(let value):
+                        self.progress = value
+                    }
+                }) { result in
                     switch result {
                     case .success:
+                        self.progress = 0
                         self.exportSuccessful = true
                     case .failure:
+                        self.progress = 0
                         self.exportSuccessful = false
                     }
                 }
             }) {
                 Text("Export")
-                    .foregroundColor(exportSuccessful ? Color(.systemGreen) : Color(.systemBlue))
+                    .foregroundColor(exportSuccessful == nil ? Color(.systemBlue) : ((exportSuccessful ?? true) ? Color(.systemGreen) : Color(.systemRed)))
             })
     }
 }
