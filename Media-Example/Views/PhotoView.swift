@@ -36,6 +36,8 @@ struct PhotoView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
+
+            Text(photo.subtypes.map { String(describing: $0) }.joined(separator: ", "))
         }.onAppear {
             self.isFavorite = self.photo.isFavorite
         }.navigationBarItems(trailing: HStack {
