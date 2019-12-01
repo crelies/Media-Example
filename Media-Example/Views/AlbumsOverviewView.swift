@@ -97,6 +97,7 @@ struct AlbumsOverviewView: View {
                             }
                         }
 
+                        #if !targetEnvironment(macCatalyst)
                         Button(action: {
                             self.isLivePhotoCameraViewVisible = true
                         }) {
@@ -108,6 +109,7 @@ struct AlbumsOverviewView: View {
 
                             }
                         }
+                        #endif
 
                         Button(action: {
                             self.isPhotoCameraViewVisible = true
