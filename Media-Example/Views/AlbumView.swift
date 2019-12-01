@@ -37,6 +37,10 @@ struct AlbumView: View {
                     Text("\(album.videos.count) videos")
                 }
             }
+
+            Section {
+                Text("\(album.allMedia.count) media items")
+            }
         }.listStyle(GroupedListStyle())
         .navigationBarTitle(Text(album.localizedTitle ?? ""), displayMode: .inline)
     }
