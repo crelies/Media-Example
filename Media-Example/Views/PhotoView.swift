@@ -30,7 +30,7 @@ struct PhotoView: View {
             }
         }
 
-        return Group {
+        return VStack(spacing: 16) {
             photo.view { image in
                 image
                     .resizable()

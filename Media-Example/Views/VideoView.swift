@@ -23,43 +23,47 @@ struct VideoView: View {
     let video: Video
 
     var body: some View {
-        video.view
-            .navigationBarItems(leading: Group {
-                if progress != 0 {
-                    Text("\(NSNumber(value: progress), formatter: Self.numberFormatter)")
-                }
-            }, trailing: Button(action: {
-                guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-                    return
-                }
-
-                let fileURL = url.appendingPathComponent("\(UUID().uuidString)")
-                guard let exportOptions = try? Video.ExportOptions(url: fileURL, fileType: .mov, quality: .low) else {
-                    return
-                }
-
-                self.exportSuccessful = nil
-                self.progress = 0
-                self.video.export(exportOptions, progress: { progress in
-                    switch progress {
-                    case .completed:
-                        self.progress = 0
-                    case .pending(let value):
-                        self.progress = value
+        VStack(spacing: 16) {
+            video.view
+                .navigationBarItems(leading: Group {
+                    if progress != 0 {
+                        Text("\(NSNumber(value: progress), formatter: Self.numberFormatter)")
                     }
-                }) { result in
-                    switch result {
-                    case .success:
-                        self.progress = 0
-                        self.exportSuccessful = true
-                    case .failure:
-                        self.progress = 0
-                        self.exportSuccessful = false
+                }, trailing: Button(action: {
+                    guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                        return
                     }
-                }
-            }) {
-                Text("Export")
-                    .foregroundColor(exportSuccessful == nil ? Color(.systemBlue) : ((exportSuccessful ?? true) ? Color(.systemGreen) : Color(.systemRed)))
-            })
+
+                    let fileURL = url.appendingPathComponent("\(UUID().uuidString)")
+                    guard let exportOptions = try? Video.ExportOptions(url: fileURL, fileType: .mov, quality: .low) else {
+                        return
+                    }
+
+                    self.exportSuccessful = nil
+                    self.progress = 0
+                    self.video.export(exportOptions, progress: { progress in
+                        switch progress {
+                        case .completed:
+                            self.progress = 0
+                        case .pending(let value):
+                            self.progress = value
+                        }
+                    }) { result in
+                        switch result {
+                        case .success:
+                            self.progress = 0
+                            self.exportSuccessful = true
+                        case .failure:
+                            self.progress = 0
+                            self.exportSuccessful = false
+                        }
+                    }
+                }) {
+                    Text("Export")
+                        .foregroundColor(exportSuccessful == nil ? Color(.systemBlue) : ((exportSuccessful ?? true) ? Color(.systemGreen) : Color(.systemRed)))
+                })
+
+            Text(video.subtypes.compactMap {$0 }.map { String(describing: $0) }.joined(separator: ", "))
+        }
     }
 }
