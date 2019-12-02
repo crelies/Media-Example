@@ -49,15 +49,12 @@ struct AlbumsOverviewView: View {
                         NavigationLink(destination: LivePhotosView(livePhotos: LivePhotos.all)) {
                             Text("All live photos")
                         }
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.all)) {
-                            Text("All photos")
-                        }
-                        NavigationLink(destination: VideosView(videos: Videos.all)) {
-                            Text("All videos")
-                        }
                     }
 
                     Section {
+                        NavigationLink(destination: PhotosView(photos: Media.Photos.all)) {
+                            Text("Media.Photos.all")
+                        }
                         NavigationLink(destination: PhotosView(photos: Media.Photos.depthEffect)) {
                             Text("Photos.depthEffect")
                         }
@@ -73,6 +70,9 @@ struct AlbumsOverviewView: View {
                     }
 
                     Section {
+                        NavigationLink(destination: VideosView(videos: Videos.all)) {
+                            Text("Videos.all")
+                        }
                         NavigationLink(destination: VideosView(videos: Videos.highFrameRates)) {
                             Text("Videos.highFrameRates")
                         }
