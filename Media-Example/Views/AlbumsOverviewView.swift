@@ -30,6 +30,9 @@ struct AlbumsOverviewView: View {
                  sortDescriptors: [ NSSortDescriptor(key: "creationDate", ascending: true) ])
     private var videos: [Video]
 
+    @FetchAlbums(ofType: .smart)
+    private var albums: [Album]
+
     var body: some View {
         NavigationView {
             if permissionGranted || Media.isAccessAllowed {
@@ -37,6 +40,9 @@ struct AlbumsOverviewView: View {
                     Section {
                         NavigationLink(destination: VideosView(videos: videos)) {
                             Text("@FetchAssets videos")
+                        }
+                        NavigationLink(destination: AlbumsView(albums: albums)) {
+                            Text("@FetchAlbums smart")
                         }
                     }
 
