@@ -26,7 +26,8 @@ struct AlbumsOverviewView: View {
     @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
 
-    @FetchAssets
+    @FetchAssets(predicate: NSPredicate(format: "duration > %d", 300),
+                 sortDescriptors: [ NSSortDescriptor(key: "creationDate", ascending: true) ])
     private var videos: [Video]
 
     var body: some View {
@@ -34,8 +35,12 @@ struct AlbumsOverviewView: View {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
-                        Text("Fetch assets example: \(videos.count)")
+                        NavigationLink(destination: VideosView(videos: videos)) {
+                            Text("@FetchAssets videos")
+                        }
+                    }
 
+                    Section {
                         NavigationLink(destination: AlbumsView(albums: userAlbums)) {
                             Text("\(userAlbums.count) User albums")
                         }
