@@ -44,10 +44,10 @@ struct AlbumsOverviewView: View {
 
                     Section {
                         NavigationLink(destination: AudiosView(audios: Audios.all)) {
-                            Text("All audios")
+                            Text("Audios.all")
                         }
                         NavigationLink(destination: LivePhotosView(livePhotos: LivePhotos.all)) {
-                            Text("All live photos")
+                            Text("LivePhotos.all")
                         }
                     }
 
