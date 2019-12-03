@@ -26,11 +26,16 @@ struct AlbumsOverviewView: View {
     @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
 
+    @FetchAssets
+    private var videos: [Video]
+
     var body: some View {
         NavigationView {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
+                        Text("Fetch assets example: \(videos.count)")
+
                         NavigationLink(destination: AlbumsView(albums: userAlbums)) {
                             Text("\(userAlbums.count) User albums")
                         }
