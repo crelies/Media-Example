@@ -26,7 +26,7 @@ struct AlbumsOverviewView: View {
     @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
 
-    @FetchAssets(predicate: NSPredicate(format: "duration > %d", 300),
+    @FetchAssets(filter: [.duration(300)],
                  sortDescriptors: [ NSSortDescriptor(key: "creationDate", ascending: true) ])
     private var videos: [Video]
 
