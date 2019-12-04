@@ -27,7 +27,7 @@ struct AlbumsOverviewView: View {
     @State private var isVideoCameraViewVisible = false
 
     @FetchAssets(filter: [.duration(300)],
-                 sortDescriptors: [ NSSortDescriptor(key: "creationDate", ascending: true) ])
+                 sort: [Sort(key: .creationDate, ascending: true)])
     private var videos: [Video]
 
     @FetchAlbums(ofType: .smart)
