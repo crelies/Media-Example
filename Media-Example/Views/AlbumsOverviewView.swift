@@ -62,14 +62,14 @@ struct AlbumsOverviewView: View {
                         NavigationLink(destination: AudiosView(audios: Audios.all)) {
                             Text("Audios.all")
                         }
-                        NavigationLink(destination: LivePhotosView(livePhotos: LivePhotos.all)) {
-                            Text("LivePhotos.all")
-                        }
                     }
 
                     Section {
                         NavigationLink(destination: PhotosView(photos: Media.Photos.all)) {
                             Text("Media.Photos.all")
+                        }
+                        NavigationLink(destination: LivePhotosView(livePhotos: Media.Photos.live)) {
+                            Text("Media.Photos.live")
                         }
                         NavigationLink(destination: PhotosView(photos: Media.Photos.depthEffect)) {
                             Text("Photos.depthEffect")
