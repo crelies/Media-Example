@@ -14,17 +14,17 @@ extension Album: Identifiable {
 }
 
 extension Audio: Identifiable {
-    public var id: String { identifier }
+    public var id: String { identifier.localIdentifier }
 }
 
 extension LivePhoto: Identifiable {
-    public var id: String { identifier }
+    public var id: String { identifier.localIdentifier }
 }
 
 extension Photo: Identifiable {
-    public var id: String { identifier }
+    public var id: String { identifier.localIdentifier }
 }
 
 extension Video: Identifiable {
-    public var id: String { identifier }
+    public var id: String { identifier.localIdentifier }
 }

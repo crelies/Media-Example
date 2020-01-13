@@ -34,10 +34,12 @@ struct VideoView: View {
                         return
                     }
 
-                    let fileURL = url.appendingPathComponent("\(UUID().uuidString)")
-                    guard let exportOptions = try? Video.ExportOptions(url: fileURL, fileType: .mov, quality: .low) else {
+                    let fileURL = url.appendingPathComponent("\(UUID().uuidString).mov")
+                    guard let outputURL = try? MediaURL<Video>(url: fileURL) else {
                         return
                     }
+
+                    let exportOptions = Video.ExportOptions(url: outputURL, quality: .low)
 
                     self.exportSuccessful = nil
                     self.progress = 0
