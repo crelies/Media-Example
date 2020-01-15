@@ -122,7 +122,7 @@ struct AlbumsOverviewView: View {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
                             try? LivePhoto.camera { result in
-
+                                debugPrint(result)
                             }
                         }
                         #endif
