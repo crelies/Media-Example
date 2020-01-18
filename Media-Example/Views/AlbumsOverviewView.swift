@@ -121,24 +121,7 @@ struct AlbumsOverviewView: View {
                         }.sheet(isPresented: $isLivePhotoCameraViewVisible, onDismiss: {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
-                            try? LivePhoto.camera { result in
-                                switch result {
-                                case .success(let data, let url):
-                                    do {
-                                        try LivePhoto.save(stillImageData: data, livePhotoMovieURL: url) { result in
-                                            switch result {
-                                            case .failure(let error):
-                                                debugPrint(error.localizedDescription)
-                                            default: ()
-                                            }
-                                        }
-                                    } catch {
-                                        debugPrint(error.localizedDescription)
-                                    }
-                                case .failure(let error):
-                                    debugPrint(error.localizedDescription)
-                                }
-                            }
+                            try? LivePhoto.camera()
                         }
                         #endif
 
