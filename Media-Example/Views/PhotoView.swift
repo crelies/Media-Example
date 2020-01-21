@@ -39,13 +39,13 @@ struct PhotoView: View {
 
             Text(photo.subtypes.map { String(describing: $0) }.joined(separator: ", "))
         }.onAppear {
-            self.isFavorite = self.photo.isFavorite
+            self.isFavorite = self.photo.metadata.isFavorite
         }.navigationBarItems(trailing: HStack {
             Button(action: {
-                self.photo.favorite(!self.photo.isFavorite) { result in
+                self.photo.favorite(!self.photo.metadata.isFavorite) { result in
                     switch result {
                     case .success:
-                        self.isFavorite = !self.photo.isFavorite
+                        self.isFavorite = !self.photo.metadata.isFavorite
                     case .failure(let error):
                         self.error = error
                         self.isErrorAlertVisible = true
