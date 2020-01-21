@@ -15,8 +15,10 @@ struct PhotoView: View {
     @State private var data: Data?
     @State private var error: Error?
     @State private var isShareSheetVisible = false
+    @State private var isPropertiesSheetVisible = false
     @State private var isErrorAlertVisible = false
     @State private var isFavorite = false
+    @State private var properties: Photo.Properties?
 
     var body: some View {
         if data == nil && error == nil {
@@ -35,11 +37,44 @@ struct PhotoView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .onTapGesture {
+                        if self.properties != nil {
+                            self.isPropertiesSheetVisible = true
+                        }
+                    }
+                    .sheet(isPresented: self.$isPropertiesSheetVisible, onDismiss: {
+                        self.isPropertiesSheetVisible = false
+                    }) {
+                        self.properties.map { properties in
+                            List {
+                                Section {
+                                    Text(String(describing: properties.exif))
+                                }
+
+                                Section {
+                                    Text(String(describing: properties.gps))
+                                }
+
+                                Section {
+                                    Text(String(describing: properties.tiff))
+                                }
+                            }.listStyle(GroupedListStyle())
+                        }
+                    }
             }
 
             Text(photo.subtypes.map { String(describing: $0) }.joined(separator: ", "))
         }.onAppear {
             self.isFavorite = self.photo.metadata.isFavorite
+
+            self.photo.properties { result in
+                switch result {
+                case .success(let properties):
+                    self.properties = properties
+                case .failure:
+                    self.properties = nil
+                }
+            }
         }.navigationBarItems(trailing: HStack {
             Button(action: {
                 self.photo.favorite(!self.photo.metadata.isFavorite) { result in
