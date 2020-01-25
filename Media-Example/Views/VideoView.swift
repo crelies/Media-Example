@@ -35,7 +35,7 @@ struct VideoView: View {
                     }
 
                     let fileURL = url.appendingPathComponent("\(UUID().uuidString).mov")
-                    guard let outputURL = try? MediaURL<Video>(url: fileURL) else {
+                    guard let outputURL = try? Media.URL<Video>(url: fileURL) else {
                         return
                     }
 
