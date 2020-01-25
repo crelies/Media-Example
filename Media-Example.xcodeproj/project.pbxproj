@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B95D596323CFB0270046574C /* ExamplePhotoLibraryAvailabilityObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D596223CFB0270046574C /* ExamplePhotoLibraryAvailabilityObserver.swift */; };
 		B97D91422388771D00A617DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D91412388771D00A617DC /* AppDelegate.swift */; };
 		B97D91442388771D00A617DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D91432388771D00A617DC /* SceneDelegate.swift */; };
 		B97D91462388771D00A617DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D91452388771D00A617DC /* ContentView.swift */; };
@@ -59,7 +58,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B95D596223CFB0270046574C /* ExamplePhotoLibraryAvailabilityObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePhotoLibraryAvailabilityObserver.swift; sourceTree = "<group>"; };
 		B97D913E2388771D00A617DC /* Media-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B97D91412388771D00A617DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B97D91432388771D00A617DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				B97D91412388771D00A617DC /* AppDelegate.swift */,
 				B97D91432388771D00A617DC /* SceneDelegate.swift */,
 				B97D91452388771D00A617DC /* ContentView.swift */,
-				B95D596223CFB0270046574C /* ExamplePhotoLibraryAvailabilityObserver.swift */,
 				B99983732389938200F74BC1 /* Extensions.swift */,
 				B97D91472388772000A617DC /* Assets.xcassets */,
 				B97D914C2388772000A617DC /* LaunchScreen.storyboard */,
@@ -300,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B999836A2389908900F74BC1 /* AlbumView.swift in Sources */,
-				B95D596323CFB0270046574C /* ExamplePhotoLibraryAvailabilityObserver.swift in Sources */,
 				B99983702389934300F74BC1 /* LivePhotosView.swift in Sources */,
 				B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */,
 				B97D91422388771D00A617DC /* AppDelegate.swift in Sources */,
