@@ -27,7 +27,7 @@ struct AlbumsOverviewView: View {
     @State private var isVideoCameraViewVisible = false
 
     @FetchAssets(filter: [.duration(300)],
-                 sort: [Sort(key: .creationDate, ascending: true)])
+                 sort: [Media.Sort(key: .creationDate, ascending: true)])
     private var videos: [Video]
 
     @FetchAlbums(ofType: .smart)
@@ -121,7 +121,10 @@ struct AlbumsOverviewView: View {
                         }.sheet(isPresented: $isLivePhotoCameraViewVisible, onDismiss: {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
-                            try? LivePhoto.camera()
+                            try? LivePhoto.camera { result in
+                                let livePhotoData = try? result.get()
+                                print(String(describing: livePhotoData))
+                            }
                         }
                         #endif
 
