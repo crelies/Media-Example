@@ -80,7 +80,7 @@ struct PhotoView: View {
                 self.photo.favorite(!self.photo.metadata.isFavorite) { result in
                     switch result {
                     case .success:
-                        self.isFavorite = !self.photo.metadata.isFavorite
+                        self.isFavorite = self.photo.metadata.isFavorite
                     case .failure(let error):
                         self.error = error
                         self.isErrorAlertVisible = true
