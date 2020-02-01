@@ -15,7 +15,7 @@ struct PhotosView: View {
     var body: some View {
         List(photos) { photo in
             NavigationLink(destination: PhotoView(photo: photo)) {
-                Text(photo.phAsset.localIdentifier)
+                Text(photo.id)
             }
         }.navigationBarTitle("Photos", displayMode: .inline)
     }

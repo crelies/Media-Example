@@ -14,7 +14,7 @@ struct AudiosView: View {
 
     var body: some View {
         List(audios) { audio in
-            Text(audio.phAsset.localIdentifier)
+            Text(audio.id)
         }.navigationBarTitle("Audios", displayMode: .inline)
     }
 }

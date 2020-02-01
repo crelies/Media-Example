@@ -65,7 +65,7 @@ struct PhotoView: View {
 
             Text(photo.subtypes.map { String(describing: $0) }.joined(separator: ", "))
         }.onAppear {
-            self.isFavorite = self.photo.metadata.isFavorite
+            self.isFavorite = self.photo.metadata?.isFavorite ?? false
 
             self.photo.properties { result in
                 switch result {
@@ -76,19 +76,21 @@ struct PhotoView: View {
                 }
             }
         }.navigationBarItems(trailing: HStack {
-            Button(action: {
-                self.photo.favorite(!self.photo.metadata.isFavorite) { result in
-                    switch result {
-                    case .success:
-                        self.isFavorite = self.photo.metadata.isFavorite
-                    case .failure(let error):
-                        self.error = error
-                        self.isErrorAlertVisible = true
+            self.photo.metadata.map { metadata in
+                Button(action: {
+                    self.photo.favorite(!metadata.isFavorite) { result in
+                        switch result {
+                        case .success:
+                            self.isFavorite = self.photo.metadata?.isFavorite ?? false
+                        case .failure(let error):
+                            self.error = error
+                            self.isErrorAlertVisible = true
+                        }
                     }
-                }
-            }) {
-                Image(systemName: isFavorite ? "heart.fill" : "heart")
-            }.alert(isPresented: $isErrorAlertVisible) { self.errorAlert(error) }
+                }) {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                }.alert(isPresented: $isErrorAlertVisible) { self.errorAlert(error) }
+            }
 
             Button(action: {
                 self.isShareSheetVisible = true

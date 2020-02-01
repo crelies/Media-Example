@@ -15,7 +15,7 @@ struct VideosView: View {
     var body: some View {
         List(videos) { video in
             NavigationLink(destination: VideoView(video: video)) {
-                Text(video.phAsset.localIdentifier)
+                Text(video.id)
             }
         }.navigationBarTitle("Videos", displayMode: .inline)
     }

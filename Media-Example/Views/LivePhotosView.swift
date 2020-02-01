@@ -15,7 +15,7 @@ struct LivePhotosView: View {
     var body: some View {
         List(livePhotos) { livePhoto in
             NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
-                Text(livePhoto.phAsset.localIdentifier)
+                Text(livePhoto.id)
             }
         }.navigationBarTitle("Live Photos", displayMode: .inline)
     }
