@@ -123,8 +123,17 @@ struct AlbumsOverviewView: View {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
                             try? LivePhoto.camera { result in
-                                let livePhotoData = try? result.get()
-                                print(String(describing: livePhotoData))
+                                guard let livePhotoData = try? result.get() else {
+                                    return
+                                }
+
+                                try? LivePhoto.save(data: livePhotoData) { result in
+                                    switch result {
+                                    case .failure(let error):
+                                        debugPrint("Live photo save error: \(error)")
+                                    default: ()
+                                    }
+                                }
                             }
                         }
                         #endif
