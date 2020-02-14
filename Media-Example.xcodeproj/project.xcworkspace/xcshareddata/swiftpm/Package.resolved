@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Media",
+        "repositoryURL": "git@github.com:crelies/Media.git",
+        "state": {
+          "branch": "dev",
+          "revision": "3ba1753ecbc3544b69488406c135a88e86f292a9",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

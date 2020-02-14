@@ -7,7 +7,7 @@
 //
 
 import AVFoundation
-import Media
+import MediaCore
 import SwiftUI
 
 struct VideoView: View {

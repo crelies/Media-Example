@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import Media
+import MediaCore
 
 extension Album: Identifiable {
-    public var id: String { identifier }
+    public var id: String { identifier ?? UUID().uuidString }
 }
 
 extension Audio: Identifiable {

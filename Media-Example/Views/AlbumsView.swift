@@ -6,7 +6,7 @@
 //  Copyright © 2019 Christian Elies. All rights reserved.
 //
 
-import Media
+import MediaCore
 import SwiftUI
 
 struct AlbumsView: View {

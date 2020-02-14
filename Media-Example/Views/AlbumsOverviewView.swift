@@ -6,7 +6,8 @@
 //  Copyright © 2019 Christian Elies. All rights reserved.
 //
 
-import Media
+import MediaCore
+import MediaSwiftUI
 import SwiftUI
 
 struct AlbumsOverviewView: View {
@@ -34,7 +35,9 @@ struct AlbumsOverviewView: View {
     private var albums: [Album]
 
     var body: some View {
-        NavigationView {
+        let cameraViewCompletion: ResultMediaURLCompletion<Photo> = { _ in }
+
+        return NavigationView {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
@@ -108,9 +111,7 @@ struct AlbumsOverviewView: View {
                         }.sheet(isPresented: $isCameraViewVisible, onDismiss: {
                             self.isCameraViewVisible = false
                         }) {
-                            try? Camera.view { result in
-
-                            }
+                            return try? Camera.view(cameraViewCompletion)
                         }
 
                         #if !targetEnvironment(macCatalyst)

@@ -13,8 +13,9 @@
 		B97D91482388772000A617DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97D91472388772000A617DC /* Assets.xcassets */; };
 		B97D914B2388772000A617DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B97D914A2388772000A617DC /* Preview Assets.xcassets */; };
 		B97D914E2388772000A617DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97D914C2388772000A617DC /* LaunchScreen.storyboard */; };
-		B97D915A2388782E00A617DC /* Media in Frameworks */ = {isa = PBXBuildFile; productRef = B97D91592388782E00A617DC /* Media */; };
 		B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */; };
+		B98EA8F723F75ED3002CBCEE /* MediaSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B98EA8F623F75ED3002CBCEE /* MediaSwiftUI */; };
+		B98EA8F923F75ED3002CBCEE /* MediaCore in Frameworks */ = {isa = PBXBuildFile; productRef = B98EA8F823F75ED3002CBCEE /* MediaCore */; };
 		B999836823898FA200F74BC1 /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836723898FA200F74BC1 /* AlbumsView.swift */; };
 		B999836A2389908900F74BC1 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983692389908900F74BC1 /* AlbumView.swift */; };
 		B999836C2389933300F74BC1 /* PhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999836B2389933300F74BC1 /* PhotosView.swift */; };
@@ -67,8 +68,8 @@
 		B97D914D2388772000A617DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B97D914F2388772000A617DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B97D91552388775400A617DC /* Media-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Media-Example.entitlements"; sourceTree = "<group>"; };
-		B97D91572388782500A617DC /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
 		B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsOverviewView.swift; sourceTree = "<group>"; };
+		B98EA8FA23F75F02002CBCEE /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
 		B999836723898FA200F74BC1 /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
 		B99983692389908900F74BC1 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		B999836B2389933300F74BC1 /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
@@ -93,7 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B97D915A2388782E00A617DC /* Media in Frameworks */,
+				B98EA8F923F75ED3002CBCEE /* MediaCore in Frameworks */,
+				B98EA8F723F75ED3002CBCEE /* MediaSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +114,7 @@
 		B97D91352388771D00A617DC = {
 			isa = PBXGroup;
 			children = (
-				B97D91572388782500A617DC /* Media */,
+				B98EA8FA23F75F02002CBCEE /* Media */,
 				B97D91402388771D00A617DC /* Media-Example */,
 				B9A3D27D238A79E700648070 /* PhotoEditing-Example */,
 				B97D913F2388771D00A617DC /* Products */,
@@ -210,7 +212,8 @@
 			);
 			name = "Media-Example";
 			packageProductDependencies = (
-				B97D91592388782E00A617DC /* Media */,
+				B98EA8F623F75ED3002CBCEE /* MediaSwiftUI */,
+				B98EA8F823F75ED3002CBCEE /* MediaCore */,
 			);
 			productName = "Media-Example";
 			productReference = B97D913E2388771D00A617DC /* Media-Example.app */;
@@ -260,6 +263,9 @@
 				Base,
 			);
 			mainGroup = B97D91352388771D00A617DC;
+			packageReferences = (
+				B98EA8F523F75ED3002CBCEE /* XCRemoteSwiftPackageReference "Media" */,
+			);
 			productRefGroup = B97D913F2388771D00A617DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -598,10 +604,27 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B98EA8F523F75ED3002CBCEE /* XCRemoteSwiftPackageReference "Media" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:crelies/Media.git";
+			requirement = {
+				branch = dev;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		B97D91592388782E00A617DC /* Media */ = {
+		B98EA8F623F75ED3002CBCEE /* MediaSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Media;
+			package = B98EA8F523F75ED3002CBCEE /* XCRemoteSwiftPackageReference "Media" */;
+			productName = MediaSwiftUI;
+		};
+		B98EA8F823F75ED3002CBCEE /* MediaCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B98EA8F523F75ED3002CBCEE /* XCRemoteSwiftPackageReference "Media" */;
+			productName = MediaCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
