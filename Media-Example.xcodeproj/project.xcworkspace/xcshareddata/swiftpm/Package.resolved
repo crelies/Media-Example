@@ -5,9 +5,9 @@
         "package": "Media",
         "repositoryURL": "git@github.com:crelies/Media.git",
         "state": {
-          "branch": "dev",
-          "revision": "3ba1753ecbc3544b69488406c135a88e86f292a9",
-          "version": null
+          "branch": null,
+          "revision": "85c9822dd34668178ac20182d74e10c211e00fee",
+          "version": "0.1.0"
         }
       }
     ]

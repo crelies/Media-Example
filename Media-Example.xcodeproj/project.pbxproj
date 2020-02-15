@@ -53,7 +53,6 @@
 		B97D914F2388772000A617DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B97D91552388775400A617DC /* Media-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Media-Example.entitlements"; sourceTree = "<group>"; };
 		B97D915C238986DD00A617DC /* AlbumsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsOverviewView.swift; sourceTree = "<group>"; };
-		B98EA8FA23F75F02002CBCEE /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
 		B999836723898FA200F74BC1 /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
 		B99983692389908900F74BC1 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		B999836B2389933300F74BC1 /* PhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosView.swift; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 		B97D91352388771D00A617DC = {
 			isa = PBXGroup;
 			children = (
-				B98EA8FA23F75F02002CBCEE /* Media */,
 				B97D91402388771D00A617DC /* Media-Example */,
 				B97D913F2388771D00A617DC /* Products */,
 				B97D91582388782E00A617DC /* Frameworks */,
@@ -461,8 +459,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:crelies/Media.git";
 			requirement = {
-				branch = dev;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
