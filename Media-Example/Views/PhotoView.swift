@@ -6,6 +6,7 @@
 //  Copyright © 2019 Christian Elies. All rights reserved.
 //
 
+import MapKit
 import MediaCore
 import SwiftUI
 
@@ -15,6 +16,10 @@ extension Photo.Properties: Identifiable {
 
 extension Data: Identifiable {
     public var id: Self { self }
+}
+
+extension CLLocationCoordinate2D: Identifiable {
+    public var id: Double { latitude + longitude }
 }
 
 struct PhotoView: View {
@@ -49,6 +54,14 @@ struct PhotoView: View {
             .sheet(item: $properties, onDismiss: {
                 properties = nil
             }) { properties in
+                if #available(iOS 14.0, *) {
+                    if let location = properties.gps.location {
+                        Map(coordinateRegion: .constant(.init(center: .init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), latitudinalMeters: 5000, longitudinalMeters: 5000)), annotationItems: [location.coordinate]) { item in
+                            MapMarker(coordinate: item)
+                        }
+                    }
+                }
+
                 List {
                     Section {
                         Text(String(describing: properties.exif))
