@@ -35,7 +35,7 @@ struct AlbumsOverviewView: View {
     private var albums: [Album]
 
     var body: some View {
-        let cameraViewCompletion: ResultMediaURLCompletion<Photo> = { _ in }
+        let cameraViewCompletion: Camera.ResultCameraResultCompletion = { _ in }
 
         return NavigationView {
             if permissionGranted || Media.isAccessAllowed {
