@@ -27,6 +27,7 @@
 		B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99983792389EDA000F74BC1 /* PhotoView.swift */; };
 		B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B999837B2389EFA400F74BC1 /* VideoView.swift */; };
 		B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3D28B238ACDE900648070 /* ActivityView.swift */; };
+		B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +67,8 @@
 		B9A3D279238A79E700648070 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		B9A3D27B238A79E700648070 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		B9A3D28B238ACDE900648070 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		B9B2A30C25D9D05D00DC3A4C /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
+		B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		B97D91352388771D00A617DC = {
 			isa = PBXGroup;
 			children = (
+				B9B2A30C25D9D05D00DC3A4C /* Media */,
 				B97D91402388771D00A617DC /* Media-Example */,
 				B97D913F2388771D00A617DC /* Products */,
 				B97D91582388782E00A617DC /* Frameworks */,
@@ -146,6 +150,7 @@
 				B99983792389EDA000F74BC1 /* PhotoView.swift */,
 				B99983712389934800F74BC1 /* VideosView.swift */,
 				B999837B2389EFA400F74BC1 /* VideoView.swift */,
+				B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */,
 				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
 				B99983722389934800F74BC1 /* VideosView.swift in Sources */,
+				B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */,
 				B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */,
 				B97D915D238986DD00A617DC /* AlbumsOverviewView.swift in Sources */,
 				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,

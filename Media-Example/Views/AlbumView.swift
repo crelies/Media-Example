@@ -33,6 +33,12 @@ struct AlbumView: View {
             }
 
             Section {
+                NavigationLink(destination: PhotoGridView(photos: album.photos)) {
+                    Text("Photo GridView")
+                }
+            }
+
+            Section {
                 NavigationLink(destination: VideosView(videos: album.videos)) {
                     Text("\(album.videos.count) videos")
                 }
