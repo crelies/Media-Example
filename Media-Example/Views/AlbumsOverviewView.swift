@@ -27,8 +27,7 @@ struct AlbumsOverviewView: View {
     @State private var isVideoBrowserViewVisible = false
     @State private var isVideoCameraViewVisible = false
 
-    @FetchAssets(filter: [.duration(300)],
-                 sort: [Media.Sort(key: .creationDate, ascending: true)])
+    @FetchAssets(sort: [Media.Sort(key: .creationDate, ascending: true)])
     private var videos: [Video]
 
     @FetchAlbums(ofType: .smart)
