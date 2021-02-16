@@ -8,6 +8,7 @@
 
 import AVFoundation
 import MediaCore
+import Photos
 import SwiftUI
 import UIKit
 
@@ -22,7 +23,7 @@ private struct ActivityIndicatorView: UIViewRepresentable {
 struct VideoView: View {
     private enum PreviewImageState {
         case loading
-        case loaded(image: UniversalImage)
+        case loaded(image: UniversalImage?)
     }
 
     private static var numberFormatter: NumberFormatter = {
@@ -34,45 +35,60 @@ struct VideoView: View {
     @State private var previewImageState: PreviewImageState = .loading
     @State private var exportSuccessful: Bool?
     @State private var progress: Float = 0
+    @State private var isPlayerPresented = false
 
     let video: Video
 
     var body: some View {
-        VStack(spacing: 16) {
-            switch previewImageState {
-            case .loading:
-                ActivityIndicatorView()
-                    .onAppear {
-                        video.previewImage { result in
-                            guard let previewImage = try? result.get() else {
-                                return
-                            }
-                            previewImageState = .loaded(image: previewImage)
-                        }
+        switch previewImageState {
+        case .loading:
+            ActivityIndicatorView()
+                .onAppear {
+                    video.previewImage { result in
+                        let previewImage = try? result.get()
+                        previewImageState = .loaded(image: previewImage)
                     }
-            case let .loaded(previewImage):
-                Image(uiImage: previewImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                }
+        case let .loaded(previewImage):
+            VStack {
+                if let videoSubtypes = video.subtypes {
+                    Text(videoSubtypes.map { String(describing: $0) }.joined(separator: ", ")).font(.headline)
+                }
+
+                ZStack {
+                    if let previewImage = previewImage {
+                        Image(uiImage: previewImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+
+                    Button {
+                        isPlayerPresented = true
+                    } label: {
+                        Image(systemName: "play.circle.fill")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
+                    .sheet(isPresented: $isPlayerPresented) {
+                        isPlayerPresented = false
+                    } content: {
+                        video.view
+                            .navigationBarItems(trailing: VStack(spacing: 8) {
+                                Button(action: export) {
+                                    Text("Export")
+                                        .foregroundColor(exportSuccessful == nil ? Color(.systemBlue) : ((exportSuccessful ?? true) ? Color(.systemGreen) : Color(.systemRed)))
+                                }
+
+                                if progress > 0 {
+                                    ProgressView(value: progress, total: 1)
+                                }
+                            })
+                    }
+                }
             }
-
-            video.view
-                .navigationBarItems(trailing: VStack(spacing: 8) {
-                    Button(action: export) {
-                        Text("Export")
-                            .foregroundColor(exportSuccessful == nil ? Color(.systemBlue) : ((exportSuccessful ?? true) ? Color(.systemGreen) : Color(.systemRed)))
-                    }
-
-                    if progress > 0 {
-                        ProgressView(value: progress, total: 1)
-                    }
-                })
-
-            if let videoSubtypes = video.subtypes {
-                Text(videoSubtypes.map { String(describing: $0) }.joined(separator: ", "))
-            }
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -110,3 +126,11 @@ private extension VideoView {
         }
     }
 }
+
+#if DEBUG
+struct VideoView_Previews: PreviewProvider {
+    static var previews: some View {
+        VideoView(video: .init(phAsset: PHAsset()))
+    }
+}
+#endif
