@@ -72,6 +72,7 @@ struct VideoView: View {
                 Text(videoSubtypes.map { String(describing: $0) }.joined(separator: ", "))
             }
         }
+        .padding()
     }
 }
 
