@@ -107,7 +107,8 @@ struct AlbumsOverviewView: View {
                             self.isCameraViewVisible = true
                         }) {
                             Text("Camera.view")
-                        }.sheet(isPresented: $isCameraViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isCameraViewVisible, onDismiss: {
                             self.isCameraViewVisible = false
                         }) {
                             return try? Camera.view(cameraViewCompletion)
@@ -118,7 +119,8 @@ struct AlbumsOverviewView: View {
                             self.isLivePhotoCameraViewVisible = true
                         }) {
                             Text("LivePhoto.camera")
-                        }.sheet(isPresented: $isLivePhotoCameraViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isLivePhotoCameraViewVisible, onDismiss: {
                             self.isLivePhotoCameraViewVisible = false
                         }) {
                             try? LivePhoto.camera { result in
@@ -141,7 +143,8 @@ struct AlbumsOverviewView: View {
                             self.isPhotoCameraViewVisible = true
                         }) {
                             Text("Photo.camera")
-                        }.sheet(isPresented: $isPhotoCameraViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isPhotoCameraViewVisible, onDismiss: {
                             self.isPhotoCameraViewVisible = false
                         }) {
                             try? Photo.camera { result in
@@ -153,7 +156,8 @@ struct AlbumsOverviewView: View {
                             self.isVideoCameraViewVisible = true
                         }) {
                             Text("Video.camera")
-                        }.sheet(isPresented: $isVideoCameraViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isVideoCameraViewVisible, onDismiss: {
                             self.isVideoCameraViewVisible = false
                         }) {
                             try? Video.camera { result in
@@ -167,7 +171,8 @@ struct AlbumsOverviewView: View {
                             self.isLivePhotoBrowserViewVisible = true
                         }) {
                             Text("LivePhoto.browser")
-                        }.sheet(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
                             self.isLivePhotoBrowserViewVisible = false
                         }) {
                             try? LivePhoto.browser { result in
@@ -179,7 +184,8 @@ struct AlbumsOverviewView: View {
                             self.isMediaBrowserViewVisible = true
                         }) {
                             Text("Media.browser")
-                        }.sheet(isPresented: $isMediaBrowserViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isMediaBrowserViewVisible, onDismiss: {
                             self.isMediaBrowserViewVisible = false
                         }) {
                             try? Media.browser { result in
@@ -191,7 +197,8 @@ struct AlbumsOverviewView: View {
                             self.isPhotoBrowserViewVisible = true
                         }) {
                             Text("Photo.browser")
-                        }.sheet(isPresented: $isPhotoBrowserViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isPhotoBrowserViewVisible, onDismiss: {
                             self.isPhotoBrowserViewVisible = false
                         }) {
                             try? Photo.browser { result in
@@ -203,7 +210,8 @@ struct AlbumsOverviewView: View {
                             self.isVideoBrowserViewVisible = true
                         }) {
                             Text("Video.browser")
-                        }.sheet(isPresented: $isVideoBrowserViewVisible, onDismiss: {
+                        }
+                        .fullScreenCover(isPresented: $isVideoBrowserViewVisible, onDismiss: {
                             self.isVideoBrowserViewVisible = false
                         }) {
                             try? Video.browser { result in
