@@ -17,7 +17,9 @@ struct LivePhotosView: View {
             NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
                 Text(livePhoto.id)
             }
-        }.navigationBarTitle("Live Photos", displayMode: .inline)
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle("Live Photos", displayMode: .inline)
     }
 }
 

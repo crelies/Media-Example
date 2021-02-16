@@ -28,18 +28,22 @@ struct AlbumsView: View {
                         Text(title)
                     }
                 }
-            }.onDelete { indexSet in
+            }
+            .onDelete { indexSet in
                 self.indexSetToDelete = indexSet
                 self.isDeleteViewVisible = true
             }
-        }.navigationBarTitle(Text("Album list"), displayMode: .inline)
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle(Text("Albums"), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.previousAddResult = nil
             self.albumName = ""
             self.isAddViewVisible = true
         }) {
             Text("Add")
-        }.sheet(isPresented: $isAddViewVisible, onDismiss: {
+        }
+        .sheet(isPresented: $isAddViewVisible, onDismiss: {
             self.isAddViewVisible = false
 
             if self.previousAddResult != nil {
@@ -60,12 +64,14 @@ struct AlbumsView: View {
                     }) {
                         Text("Create")
                     }
-                }.navigationBarItems(trailing: Button(action: {
+                }
+                .navigationBarItems(trailing: Button(action: {
                     self.isAddViewVisible = false
                 }) {
                     Image(systemName: "xmark")
                 })
-            }.navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         })
         .alert(isPresented: $isAddConfirmationViewVisible) {
             switch previousAddResult {

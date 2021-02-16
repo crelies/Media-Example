@@ -15,7 +15,9 @@ struct AudiosView: View {
     var body: some View {
         List(audios) { audio in
             Text(audio.id)
-        }.navigationBarTitle("Audios", displayMode: .inline)
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle("Audios", displayMode: .inline)
     }
 }
 

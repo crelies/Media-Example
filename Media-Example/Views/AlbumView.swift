@@ -44,10 +44,9 @@ struct AlbumView: View {
                 }
             }
 
-            Section {
-                Text("\(album.allMedia.count) media items")
-            }
-        }.listStyle(GroupedListStyle())
+            Text("\(album.allMedia.count) media items")
+        }
+        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(album.localizedTitle ?? ""), displayMode: .inline)
     }
 }

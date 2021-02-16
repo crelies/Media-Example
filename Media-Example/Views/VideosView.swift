@@ -17,7 +17,9 @@ struct VideosView: View {
             NavigationLink(destination: VideoView(video: video)) {
                 Text(video.id)
             }
-        }.navigationBarTitle("Videos", displayMode: .inline)
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle("Videos", displayMode: .inline)
     }
 }
 

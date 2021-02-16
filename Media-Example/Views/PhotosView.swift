@@ -17,7 +17,9 @@ struct PhotosView: View {
             NavigationLink(destination: PhotoView(photo: photo)) {
                 Text(photo.id)
             }
-        }.navigationBarTitle("Photos", displayMode: .inline)
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle("Photos", displayMode: .inline)
     }
 }
 

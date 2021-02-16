@@ -74,7 +74,8 @@ struct PhotoView: View {
                     Section {
                         Text(String(describing: properties.tiff))
                     }
-                }.listStyle(GroupedListStyle())
+                }
+                .listStyle(InsetGroupedListStyle())
             }
 
             Text(photo.subtypes.map { String(describing: $0) }.joined(separator: ", "))

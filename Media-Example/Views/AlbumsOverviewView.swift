@@ -212,7 +212,8 @@ struct AlbumsOverviewView: View {
                             }
                         }
                     }
-                }.listStyle(GroupedListStyle())
+                }
+                .listStyle(InsetGroupedListStyle())
                 .navigationBarTitle("Examples")
             } else {
                 VStack(spacing: 20) {
