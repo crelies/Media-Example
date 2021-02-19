@@ -1,5 +1,5 @@
 //
-//  AlbumsOverviewView.swift
+//  RootScreen.swift
 //  Media-Example
 //
 //  Created by Christian Elies on 23.11.19.
@@ -10,7 +10,7 @@ import MediaCore
 import MediaSwiftUI
 import SwiftUI
 
-struct AlbumsOverviewView: View {
+struct RootScreen: View {
     @State private var userAlbums: [Album] = []
     @State private var cloudAlbums: [Album] = []
     @State private var smartAlbums: [Album] = []
@@ -245,7 +245,7 @@ struct AlbumsOverviewView: View {
     }
 }
 
-extension AlbumsOverviewView {
+extension RootScreen {
     private func requestPermission() {
         Media.requestPermission { result in
             switch result {
@@ -265,6 +265,6 @@ extension AlbumsOverviewView {
 
 struct AlbumsOverviewView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumsOverviewView()
+        RootScreen()
     }
 }
