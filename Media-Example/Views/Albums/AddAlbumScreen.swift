@@ -24,6 +24,7 @@ struct AddAlbumScreen: View {
                 Button(action: createAlbum) {
                     Text("Create")
                 }
+                .disabled(albumName.count <= 3)
             }
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
