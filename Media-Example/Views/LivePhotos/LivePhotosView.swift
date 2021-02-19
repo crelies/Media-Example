@@ -13,9 +13,13 @@ struct LivePhotosView: View {
     let livePhotos: [LivePhoto]
 
     var body: some View {
-        List(livePhotos) { livePhoto in
+        List(livePhotos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { livePhoto in
             NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
-                Text(livePhoto.id)
+                if let creationDate = livePhoto.metadata?.creationDate {
+                    Text(creationDate, style: .date)
+                } else {
+                    Text(livePhoto.id)
+                }
             }
         }
         .listStyle(InsetGroupedListStyle())

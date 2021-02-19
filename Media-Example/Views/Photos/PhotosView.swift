@@ -13,9 +13,13 @@ struct PhotosView: View {
     let photos: [Photo]
 
     var body: some View {
-        List(photos) { photo in
+        List(photos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { photo in
             NavigationLink(destination: PhotoView(photo: photo)) {
-                Text(photo.id)
+                if let creationDate = photo.metadata?.creationDate {
+                    Text(creationDate, style: .date)
+                } else {
+                    Text(photo.id)
+                }
             }
         }
         .listStyle(InsetGroupedListStyle())

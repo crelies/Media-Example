@@ -13,9 +13,13 @@ struct VideosView: View {
     let videos: [Video]
 
     var body: some View {
-        List(videos) { video in
+        List(videos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { video in
             NavigationLink(destination: VideoView(video: video)) {
-                Text(video.id)
+                if let creationDate = video.metadata?.creationDate {
+                    Text(creationDate, style: .date)
+                } else {
+                    Text(video.id)
+                }
             }
         }
         .listStyle(InsetGroupedListStyle())
