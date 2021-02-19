@@ -53,8 +53,10 @@ struct AlbumView: View {
     }
 }
 
+#if DEBUG
 //struct AlbumView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AlbumView()
 //    }
 //}
+#endif

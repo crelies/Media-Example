@@ -119,8 +119,8 @@ struct PhotoView: View {
     }
 }
 
-extension PhotoView {
-    private func errorAlert(_ error: Error?) -> Alert {
+private extension PhotoView {
+    func errorAlert(_ error: Error?) -> Alert {
         Alert(title: Text("Error"), message: Text(error?.localizedDescription ?? "An unknown error occurred"), dismissButton: .cancel {
             isErrorAlertVisible = false
         })

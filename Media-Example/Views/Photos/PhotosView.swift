@@ -27,8 +27,10 @@ struct PhotosView: View {
     }
 }
 
+#if DEBUG
 struct PhotosView_Previews: PreviewProvider {
     static var previews: some View {
         PhotosView(photos: [])
     }
 }
+#endif

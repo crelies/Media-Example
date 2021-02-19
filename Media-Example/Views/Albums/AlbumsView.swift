@@ -81,8 +81,10 @@ private extension AlbumsView {
     }
 }
 
+#if DEBUG
 struct AlbumsView_Previews: PreviewProvider {
     static var previews: some View {
         AlbumsView(albums: [])
     }
 }
+#endif

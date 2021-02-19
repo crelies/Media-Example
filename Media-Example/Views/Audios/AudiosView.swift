@@ -21,8 +21,10 @@ struct AudiosView: View {
     }
 }
 
+#if DEBUG
 struct AudiosView_Previews: PreviewProvider {
     static var previews: some View {
         AudiosView(audios: [])
     }
 }
+#endif
