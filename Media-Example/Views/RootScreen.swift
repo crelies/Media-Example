@@ -34,9 +34,7 @@ struct RootScreen: View {
     private var albums: [Album]
 
     var body: some View {
-        let cameraViewCompletion: Camera.ResultCameraResultCompletion = { _ in }
-
-        return NavigationView {
+        NavigationView {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
@@ -111,7 +109,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isCameraViewVisible, onDismiss: {
                             self.isCameraViewVisible = false
                         }) {
-                            return try? Camera.view(cameraViewCompletion)
+                            try? Camera.view { _ in }
                         }
 
                         #if !targetEnvironment(macCatalyst)
@@ -147,9 +145,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isPhotoCameraViewVisible, onDismiss: {
                             self.isPhotoCameraViewVisible = false
                         }) {
-                            try? Photo.camera { result in
-
-                            }
+                            try? Photo.camera { _ in }
                         }
 
                         Button(action: {
@@ -160,9 +156,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isVideoCameraViewVisible, onDismiss: {
                             self.isVideoCameraViewVisible = false
                         }) {
-                            try? Video.camera { result in
-
-                            }
+                            try? Video.camera { _ in }
                         }
                     }
 
@@ -175,9 +169,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isLivePhotoBrowserViewVisible, onDismiss: {
                             self.isLivePhotoBrowserViewVisible = false
                         }) {
-                            try? LivePhoto.browser { result in
-
-                            }
+                            try? LivePhoto.browser { _ in }
                         }
 
                         Button(action: {
@@ -188,9 +180,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isMediaBrowserViewVisible, onDismiss: {
                             self.isMediaBrowserViewVisible = false
                         }) {
-                            try? Media.browser { result in
-
-                            }
+                            try? Media.browser { _ in }
                         }
 
                         Button(action: {
@@ -201,9 +191,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isPhotoBrowserViewVisible, onDismiss: {
                             self.isPhotoBrowserViewVisible = false
                         }) {
-                            try? Photo.browser { result in
-
-                            }
+                            try? Photo.browser { _ in }
                         }
 
                         Button(action: {
@@ -214,9 +202,7 @@ struct RootScreen: View {
                         .fullScreenCover(isPresented: $isVideoBrowserViewVisible, onDismiss: {
                             self.isVideoBrowserViewVisible = false
                         }) {
-                            try? Video.browser { result in
-
-                            }
+                            try? Video.browser { _ in }
                         }
                     }
                 }
@@ -224,47 +210,49 @@ struct RootScreen: View {
                 .navigationBarTitle("Examples")
             } else {
                 VStack(spacing: 20) {
-                    self.permissionError.map { Text($0.localizedDescription) }
+                    if let permissionError = permissionError {
+                        Text(permissionError.localizedDescription)
+                    }
 
-                    Button(action: {
-                        self.requestPermission()
-                    }) {
+                    Button(action: requestPermission) {
                         Text("Trigger permission request")
                     }
                 }
             }
         }.onAppear {
             if !Media.isAccessAllowed {
-                self.requestPermission()
+                requestPermission()
             } else {
-                self.userAlbums = Albums.user
-                self.cloudAlbums = Albums.cloud
-                self.smartAlbums = Albums.smart
+                userAlbums = Albums.user
+                cloudAlbums = Albums.cloud
+                smartAlbums = Albums.smart
             }
         }
     }
 }
 
-extension RootScreen {
-    private func requestPermission() {
+private extension RootScreen {
+    func requestPermission() {
         Media.requestPermission { result in
             switch result {
             case .success:
-                self.permissionGranted = true
-                self.permissionError = nil
-                self.userAlbums = Albums.user
-                self.cloudAlbums = Albums.cloud
-                self.smartAlbums = Albums.smart
+                permissionGranted = true
+                permissionError = nil
+                userAlbums = Albums.user
+                cloudAlbums = Albums.cloud
+                smartAlbums = Albums.smart
             case .failure(let error):
-                self.permissionGranted = false
-                self.permissionError = error
+                permissionGranted = false
+                permissionError = error
             }
         }
     }
 }
 
+#if DEBUG
 struct AlbumsOverviewView_Previews: PreviewProvider {
     static var previews: some View {
         RootScreen()
     }
 }
+#endif
