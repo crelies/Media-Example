@@ -26,6 +26,7 @@
 		B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A3D28B238ACDE900648070 /* ActivityView.swift */; };
 		B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */; };
 		B9B2A31F25E0487E00DC3A4C /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */; };
+		B9B2A33225E05E1C00DC3A4C /* AddAlbumScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A33125E05E1C00DC3A4C /* AddAlbumScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		B9B2A30C25D9D05D00DC3A4C /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Media; path = "../Swift packages/Media"; sourceTree = "<group>"; };
 		B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
+		B9B2A33125E05E1C00DC3A4C /* AddAlbumScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlbumScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		B9B2A31525E0470400DC3A4C /* Albums */ = {
 			isa = PBXGroup;
 			children = (
+				B9B2A33125E05E1C00DC3A4C /* AddAlbumScreen.swift */,
 				B999836723898FA200F74BC1 /* AlbumsView.swift */,
 				B99983692389908900F74BC1 /* AlbumView.swift */,
 				B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */,
@@ -276,6 +279,7 @@
 				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
 				B99983722389934800F74BC1 /* VideosView.swift in Sources */,
 				B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */,
+				B9B2A33225E05E1C00DC3A4C /* AddAlbumScreen.swift in Sources */,
 				B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */,
 				B97D915D238986DD00A617DC /* RootScreen.swift in Sources */,
 				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,

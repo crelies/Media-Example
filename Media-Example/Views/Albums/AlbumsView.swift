@@ -9,92 +9,51 @@
 import MediaCore
 import SwiftUI
 
+extension IndexSet: Identifiable {
+    public var id: Self { self }
+}
+
 struct AlbumsView: View {
     @State private var isAddViewVisible = false
-    @State private var isAddConfirmationViewVisible = false
-    @State private var isDeleteViewVisible = false
-    @State private var albumName = ""
-
-    @State private var previousAddResult: Result<Void, Error>?
-    @State private var indexSetToDelete: IndexSet = IndexSet()
+    @State private var indexSetToDelete: IndexSet?
 
     let albums: [Album]
 
     var body: some View {
         List {
-            ForEach(albums) { album in
-                album.localizedTitle.map { title in
-                    NavigationLink(destination: AlbumView(album: album)) {
-                        Text(title)
+            ForEach(albums.sorted(by: { ($0.localizedTitle ?? String()) < ($1.localizedTitle ?? String()) })) { album in
+                NavigationLink(destination: AlbumView(album: album)) {
+                    if let localizedTitle = album.localizedTitle {
+                        Text(localizedTitle)
+                    } else {
+                        Text(album.id)
                     }
                 }
             }
             .onDelete { indexSet in
-                self.indexSetToDelete = indexSet
-                self.isDeleteViewVisible = true
+                indexSetToDelete = indexSet
             }
         }
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text("Albums"), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
-            self.previousAddResult = nil
-            self.albumName = ""
-            self.isAddViewVisible = true
+            isAddViewVisible = true
         }) {
             Text("Add")
         }
         .sheet(isPresented: $isAddViewVisible, onDismiss: {
-            self.isAddViewVisible = false
-
-            if self.previousAddResult != nil {
-                self.isAddConfirmationViewVisible = true
-            }
+            isAddViewVisible = false
         }) {
-            NavigationView {
-                Form {
-                    TextField("Album name", text: self.$albumName)
-
-                    Button(action: {
-                        if self.albumName.count > 3 {
-                            Album.create(title: self.albumName) { result in
-                                self.previousAddResult = result
-                                self.isAddViewVisible = false
-                            }
-                        }
-                    }) {
-                        Text("Create")
-                    }
-                }
-                .navigationBarItems(trailing: Button(action: {
-                    self.isAddViewVisible = false
-                }) {
-                    Image(systemName: "xmark")
-                })
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
+            AddAlbumScreen()
         })
-        .alert(isPresented: $isAddConfirmationViewVisible) {
-            switch previousAddResult {
-            case .success:
-                return Self.alert(title: "Success", message: "Album added")
-            case .failure(let error):
-                return Self.alert(title: "Failure", message: error.localizedDescription)
-            case .none:
-                return Self.alert(title: "Failure", message: "An unknown error occurred")
-            }
-        }
-        .alert(isPresented: $isDeleteViewVisible) {
-            self.deleteConfirmationAlert(indexSetToDelete: self.indexSetToDelete)
+        .alert(item: $indexSetToDelete) { indexSet in
+            deleteConfirmationAlert(indexSetToDelete: indexSet)
         }
     }
 }
 
-extension AlbumsView {
-    private static func alert(title: String, message: String) -> Alert {
-        Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("OK")))
-    }
-
-    private func deleteConfirmationAlert(indexSetToDelete: IndexSet) -> Alert {
+private extension AlbumsView {
+    func deleteConfirmationAlert(indexSetToDelete: IndexSet) -> Alert {
         var albumsToDelete: [Album] = []
         for index in indexSetToDelete {
             guard index >= 0, index < albums.count else {
@@ -109,17 +68,15 @@ extension AlbumsView {
 
         return Alert(title: Text("Are you sure?"), message: Text("[\(albumsToDeleteSummary)] will be deleted"), primaryButton: .default(Text("Yes")) {
             guard !albumsToDelete.isEmpty else {
-                self.indexSetToDelete = IndexSet()
-                self.isDeleteViewVisible = false
+                self.indexSetToDelete = nil
                 return
             }
 
             albumsToDelete.forEach { $0.delete { _ in } }
 
-            self.indexSetToDelete = IndexSet()
-            self.isDeleteViewVisible = false
+            self.indexSetToDelete = nil
         }, secondaryButton: .cancel() {
-            self.isDeleteViewVisible = false
+            self.indexSetToDelete = nil
         })
     }
 }
