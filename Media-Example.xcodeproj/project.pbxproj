@@ -27,6 +27,8 @@
 		B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */; };
 		B9B2A31F25E0487E00DC3A4C /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */; };
 		B9B2A33225E05E1C00DC3A4C /* AddAlbumScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A33125E05E1C00DC3A4C /* AddAlbumScreen.swift */; };
+		B9B2A33725E1344400DC3A4C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A33625E1344400DC3A4C /* Item.swift */; };
+		B9B2A33C25E1348300DC3A4C /* Equatable+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A33B25E1348300DC3A4C /* Equatable+Hashable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +69,8 @@
 		B9B2A30E25D9D0AD00DC3A4C /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		B9B2A33125E05E1C00DC3A4C /* AddAlbumScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlbumScreen.swift; sourceTree = "<group>"; };
+		B9B2A33625E1344400DC3A4C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B9B2A33B25E1348300DC3A4C /* Equatable+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Equatable+Hashable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +109,12 @@
 			children = (
 				B97D91552388775400A617DC /* Media-Example.entitlements */,
 				B97D914F2388772000A617DC /* Info.plist */,
-				B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */,
 				B97D91452388771D00A617DC /* ContentView.swift */,
+				B9B2A31E25E0487E00DC3A4C /* ExampleApp.swift */,
 				B99983732389938200F74BC1 /* Extensions.swift */,
 				B97D91472388772000A617DC /* Assets.xcassets */,
+				B9B2A33A25E1347500DC3A4C /* Extensions */,
+				B9B2A33525E1343200DC3A4C /* Models */,
 				B97D91492388772000A617DC /* Preview Content */,
 				B97D915B238986CC00A617DC /* Views */,
 			);
@@ -192,6 +198,22 @@
 			path = Audios;
 			sourceTree = "<group>";
 		};
+		B9B2A33525E1343200DC3A4C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9B2A33625E1344400DC3A4C /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B9B2A33A25E1347500DC3A4C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B9B2A33B25E1348300DC3A4C /* Equatable+Hashable.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,6 +294,7 @@
 			files = (
 				B999836A2389908900F74BC1 /* AlbumView.swift in Sources */,
 				B99983702389934300F74BC1 /* LivePhotosView.swift in Sources */,
+				B9B2A33725E1344400DC3A4C /* Item.swift in Sources */,
 				B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */,
 				B9B2A31F25E0487E00DC3A4C /* ExampleApp.swift in Sources */,
 				B999836E2389933900F74BC1 /* AudiosView.swift in Sources */,
@@ -279,6 +302,7 @@
 				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
 				B99983722389934800F74BC1 /* VideosView.swift in Sources */,
 				B9B2A30F25D9D0AD00DC3A4C /* PhotoGridView.swift in Sources */,
+				B9B2A33C25E1348300DC3A4C /* Equatable+Hashable.swift in Sources */,
 				B9B2A33225E05E1C00DC3A4C /* AddAlbumScreen.swift in Sources */,
 				B9A3D28C238ACDE900648070 /* ActivityView.swift in Sources */,
 				B97D915D238986DD00A617DC /* RootScreen.swift in Sources */,

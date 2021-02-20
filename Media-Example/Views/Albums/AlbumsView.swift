@@ -13,46 +13,86 @@ extension IndexSet: Identifiable {
     public var id: Self { self }
 }
 
+enum ViewState<T: Hashable> {
+    case loading
+    case loaded(value: T)
+    case failed(error: Swift.Error)
+}
+
 struct AlbumsView: View {
+    @State private var viewState: ViewState<Item> = .loading
     @State private var isAddViewVisible = false
     @State private var indexSetToDelete: IndexSet?
 
     let albums: [Album]
 
     var body: some View {
-        List {
-            ForEach(albums.sorted(by: { ($0.localizedTitle ?? String()) < ($1.localizedTitle ?? String()) })) { album in
-                NavigationLink(destination: AlbumView(album: album)) {
-                    if let localizedTitle = album.localizedTitle {
-                        Text(localizedTitle)
-                    } else {
-                        Text(album.id)
-                    }
+        switch viewState {
+        case .loading:
+            ProgressView("Fetching media from \(albums.count) albums ...")
+                .onAppear(perform: load)
+        case let .loaded(item):
+            List {
+                OutlineGroup(item, children: \.children) { item in
+                    item.view { _ in }
                 }
             }
-            .onDelete { indexSet in
-                indexSetToDelete = indexSet
+            .listStyle(InsetGroupedListStyle())
+            .navigationBarTitle(Text("Albums"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                isAddViewVisible = true
+            }) {
+                Text("Add")
             }
+            .sheet(isPresented: $isAddViewVisible, onDismiss: {
+                isAddViewVisible = false
+            }) {
+                AddAlbumScreen()
+            })
+            .alert(item: $indexSetToDelete) { indexSet in
+                deleteConfirmationAlert(indexSetToDelete: indexSet)
+            }
+        case let .failed(error):
+            Text(error.localizedDescription)
         }
-        .listStyle(InsetGroupedListStyle())
-        .navigationBarTitle(Text("Albums"), displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: {
-            isAddViewVisible = true
-        }) {
-            Text("Add")
-        }
-        .sheet(isPresented: $isAddViewVisible, onDismiss: {
-            isAddViewVisible = false
-        }) {
-            AddAlbumScreen()
-        })
-        .alert(item: $indexSetToDelete) { indexSet in
-            deleteConfirmationAlert(indexSetToDelete: indexSet)
-        }
+
+//            ForEach(albums.sorted(by: { ($0.localizedTitle ?? String()) < ($1.localizedTitle ?? String()) })) { album in
+//                NavigationLink(destination: AlbumView(album: album)) {
+//                    if let localizedTitle = album.localizedTitle {
+//                        Text(localizedTitle)
+//                    } else {
+//                        Text(album.id)
+//                    }
+//                }
+//            }
+//            .onDelete { indexSet in
+//                indexSetToDelete = indexSet
+//            }
     }
 }
 
 private extension AlbumsView {
+    func load() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let item = Item.albums(
+                items: albums.map { album -> Item in
+                    let albumMetadata = AlbumMetadata(
+                        id: album.id,
+                        localizedTitle: album.localizedTitle ?? "Album",
+                        audios: album.audios.map { $0.id },
+                        livePhotos: album.livePhotos.map { $0.id },
+                        photos: album.photos.map { $0.id },
+                        videos: album.videos.map { $0.id }
+                    )
+                    return Item.album(album: albumMetadata)
+                }
+            )
+            DispatchQueue.main.async {
+                viewState = .loaded(value: item)
+            }
+        }
+    }
+
     func deleteConfirmationAlert(indexSetToDelete: IndexSet) -> Alert {
         var albumsToDelete: [Album] = []
         for index in indexSetToDelete {
