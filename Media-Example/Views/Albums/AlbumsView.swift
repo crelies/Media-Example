@@ -20,22 +20,40 @@ enum ViewState<T: Hashable> {
 }
 
 struct AlbumsView: View {
-    @State private var viewState: ViewState<Item> = .loading
+    @State private var viewState: ViewState<LazyAlbums> = .loading
     @State private var isAddViewVisible = false
     @State private var indexSetToDelete: IndexSet?
 
-    let albums: [Album]
+    let albums: LazyAlbums
 
     var body: some View {
         switch viewState {
         case .loading:
             ProgressView("Fetching media from \(albums.count) albums ...")
                 .onAppear(perform: load)
-        case let .loaded(item):
-            List {
-                OutlineGroup(item, children: \.children) { item in
-                    item.view { _ in }
+        case let .loaded(albums):
+            ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(0..<albums.count, id: \.self) { index in
+                        if let album = albums[index], album.estimatedAssetCount > 0 {
+                            NavigationLink(destination: AlbumView(album: album)) {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("\(album.localizedTitle ?? album.id)")
+                                        Text("(estimated assets: \(album.estimatedAssetCount))").font(.footnote)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(16)
+                        }
+                    }
                 }
+                .padding()
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle(Text("Albums"), displayMode: .inline)
@@ -55,16 +73,7 @@ struct AlbumsView: View {
         case let .failed(error):
             Text(error.localizedDescription)
         }
-
-//            ForEach(albums.sorted(by: { ($0.localizedTitle ?? String()) < ($1.localizedTitle ?? String()) })) { album in
-//                NavigationLink(destination: AlbumView(album: album)) {
-//                    if let localizedTitle = album.localizedTitle {
-//                        Text(localizedTitle)
-//                    } else {
-//                        Text(album.id)
-//                    }
-//                }
-//            }
+        // TODO: onDelete
 //            .onDelete { indexSet in
 //                indexSetToDelete = indexSet
 //            }
@@ -73,34 +82,19 @@ struct AlbumsView: View {
 
 private extension AlbumsView {
     func load() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let item = Item.albums(
-                items: albums.map { album -> Item in
-                    let albumMetadata = AlbumMetadata(
-                        id: album.id,
-                        localizedTitle: album.localizedTitle ?? "Album",
-                        audios: album.audios.map { $0.id },
-                        livePhotos: album.livePhotos.map { $0.id },
-                        photos: album.photos.map { $0.id },
-                        videos: album.videos.map { $0.id }
-                    )
-                    return Item.album(album: albumMetadata)
-                }
-            )
-            DispatchQueue.main.async {
-                viewState = .loaded(value: item)
-            }
-        }
+        viewState = .loaded(value: albums)
     }
 
     func deleteConfirmationAlert(indexSetToDelete: IndexSet) -> Alert {
-        var albumsToDelete: [Album] = []
+        var albumsToDelete: [LazyAlbum] = []
         for index in indexSetToDelete {
             guard index >= 0, index < albums.count else {
                 continue
             }
 
-            let album = albums[index]
+            guard let album = albums[index] else {
+                continue
+            }
             albumsToDelete.append(album)
         }
 
@@ -124,7 +118,7 @@ private extension AlbumsView {
 #if DEBUG
 struct AlbumsView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumsView(albums: [])
+        AlbumsView(albums: LazyAlbums.cloud!)
     }
 }
 #endif

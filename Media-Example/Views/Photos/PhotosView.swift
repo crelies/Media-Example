@@ -10,27 +10,33 @@ import MediaCore
 import SwiftUI
 
 struct PhotosView: View {
-    let photos: [Photo]
+    let photos: Media.LazyPhotos
 
     var body: some View {
-        List(photos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { photo in
-            NavigationLink(destination: PhotoView(photo: photo)) {
-                if let creationDate = photo.metadata?.creationDate {
-                    Text(creationDate, style: .date)
-                } else {
-                    Text(photo.id)
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(0..<photos.count, id: \.self) { index in
+                    if let photo = photos[index] {
+                        NavigationLink(destination: PhotoView(photo: photo)) {
+                            HStack {
+                                if let creationDate = photo.metadata?.creationDate {
+                                    Text(creationDate, style: .date) + Text("\n(\(photo.id.prefix(5).map(String.init).joined()))").font(.footnote)
+                                } else {
+                                    Text(photo.id)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(16)
+                        }
+                    }
                 }
             }
+            .padding()
         }
-        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Photos", displayMode: .inline)
     }
 }
-
-#if DEBUG
-struct PhotosView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotosView(photos: [])
-    }
-}
-#endif

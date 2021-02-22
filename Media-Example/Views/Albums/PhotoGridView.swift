@@ -10,29 +10,23 @@ import MediaCore
 import SwiftUI
 
 struct PhotoGridView: View {
-    let photos: [Photo]
+    let photos: Media.LazyPhotos
 
     var body: some View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
 
         ScrollView {
             LazyVGrid(columns: columns, content: {
-                ForEach(photos) { photo in
-                    photo.view(targetSize: .init(width: 200, height: 200)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+                ForEach(0..<photos.count, id: \.self) { index in
+                    if let photo = photos[index] {
+                        photo.view(targetSize: .init(width: 200, height: 200)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
                     }
                 }
             })
         }
     }
 }
-
-#if DEBUG
-struct PhotoGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoGridView(photos: [])
-    }
-}
-#endif

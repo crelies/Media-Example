@@ -10,21 +10,23 @@ import MediaCore
 import SwiftUI
 
 struct AudiosView: View {
-    let audios: [Audio]
+    let audios: LazyAudios
 
     var body: some View {
-        List(audios) { audio in
-            Text(audio.id)
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(0..<audios.count, id: \.self) { index in
+                    if let audio = audios[index] {
+                        (Text(audio.id) + Text("\n(\(audio.id.prefix(5).map(String.init).joined()))").font(.footnote))
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(16)
+                    }
+                }
+            }
+            .padding()
         }
-        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Audios", displayMode: .inline)
     }
 }
-
-#if DEBUG
-struct AudiosView_Previews: PreviewProvider {
-    static var previews: some View {
-        AudiosView(audios: [])
-    }
-}
-#endif

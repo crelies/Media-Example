@@ -10,40 +10,48 @@ import MediaCore
 import SwiftUI
 
 struct AlbumView: View {
-    let album: Album
+    let album: LazyAlbum
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("\(album.allMedia.count) media items").font(.footnote).padding(.vertical)
+            Text("\(album.estimatedAssetCount) estimated media items").font(.footnote).padding(.vertical)
 
             List {
-                Section {
-                    NavigationLink(destination: AudiosView(audios: album.audios)) {
-                        Text("\(album.audios.count) audios")
+                if let audios = album.audios, audios.count > 0 {
+                    Section {
+                        NavigationLink(destination: AudiosView(audios: audios)) {
+                            Text("Audios (\(audios.count))")
+                        }
                     }
                 }
 
-                Section {
-                    NavigationLink(destination: LivePhotosView(livePhotos: album.livePhotos)) {
-                        Text("\(album.livePhotos.count) live photos")
+                if let livePhotos = album.livePhotos, livePhotos.count > 0 {
+                    Section {
+                        NavigationLink(destination: LivePhotosView(livePhotos: livePhotos)) {
+                            Text("Live Photos (\(livePhotos.count))")
+                        }
                     }
                 }
 
-                Section {
-                    NavigationLink(destination: PhotosView(photos: album.photos)) {
-                        Text("\(album.photos.count) photos")
+                if let photos = album.photos, photos.count > 0 {
+                    Section {
+                        NavigationLink(destination: PhotosView(photos: photos)) {
+                            Text("Photos (\(photos.count))")
+                        }
+                    }
+
+                    Section {
+                        NavigationLink(destination: PhotoGridView(photos: photos)) {
+                            Text("Photo GridView")
+                        }
                     }
                 }
 
-                Section {
-                    NavigationLink(destination: PhotoGridView(photos: album.photos)) {
-                        Text("Photo GridView")
-                    }
-                }
-
-                Section {
-                    NavigationLink(destination: VideosView(videos: album.videos)) {
-                        Text("\(album.videos.count) videos")
+                if let videos = album.videos, videos.count > 0 {
+                    Section {
+                        NavigationLink(destination: VideosView(videos: videos)) {
+                            Text("Videos (\(videos.count))")
+                        }
                     }
                 }
             }
@@ -52,11 +60,3 @@ struct AlbumView: View {
         .navigationBarTitle(Text(album.localizedTitle ?? ""), displayMode: .inline)
     }
 }
-
-#if DEBUG
-//struct AlbumView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AlbumView()
-//    }
-//}
-#endif

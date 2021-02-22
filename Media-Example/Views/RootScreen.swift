@@ -11,9 +11,9 @@ import MediaSwiftUI
 import SwiftUI
 
 struct RootScreen: View {
-    @State private var userAlbums: [Album] = []
-    @State private var cloudAlbums: [Album] = []
-    @State private var smartAlbums: [Album] = []
+    @State private var userAlbums: LazyAlbums?
+    @State private var cloudAlbums: LazyAlbums?
+    @State private var smartAlbums: LazyAlbums?
 
     @State private var permissionGranted: Bool = false
     @State private var permissionError: PermissionError?
@@ -38,65 +38,103 @@ struct RootScreen: View {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
-                        NavigationLink(destination: VideosView(videos: videos)) {
-                            Text("@FetchAssets videos")
+//                        NavigationLink(destination: VideosView(videos: videos)) {
+//                            Text("@FetchAssets videos")
+//                        }
+//                        NavigationLink(destination: AlbumsView(albums: albums)) {
+//                            Text("@FetchAlbums smart")
+//                        }
+                    }
+
+                    Section {
+                        if let userAlbums = userAlbums {
+                            NavigationLink(destination: AlbumsView(albums: userAlbums)) {
+                                Text("User albums (\(userAlbums.count))")
+                            }
                         }
-                        NavigationLink(destination: AlbumsView(albums: albums)) {
-                            Text("@FetchAlbums smart")
+
+                        if let cloudAlbums = cloudAlbums {
+                            NavigationLink(destination: AlbumsView(albums: cloudAlbums)) {
+                                Text("Cloud albums (\(cloudAlbums.count))")
+                            }
+                        }
+
+                        if let smartAlbums = smartAlbums {
+                            NavigationLink(destination: AlbumsView(albums: smartAlbums)) {
+                                Text("Smart albums (\(smartAlbums.count))")
+                            }
+                        }
+                    }
+
+                    if let audios = LazyAudios.all {
+                        Section {
+                            NavigationLink(destination: AudiosView(audios: audios)) {
+                                Text("Audios.all (\(audios.count))")
+                            }
                         }
                     }
 
                     Section {
-                        NavigationLink(destination: AlbumsView(albums: userAlbums)) {
-                            Text("\(userAlbums.count) User albums")
+                        if let allPhotos = Media.LazyPhotos.all {
+                            NavigationLink(destination: PhotosView(photos: allPhotos)) {
+                                Text("Media.Photos.all (\(allPhotos.count))")
+                            }
                         }
-                        NavigationLink(destination: AlbumsView(albums: cloudAlbums)) {
-                            Text("\(cloudAlbums.count) Cloud albums")
+
+                        if let livePhotos = Media.LazyPhotos.live {
+                            NavigationLink(destination: LivePhotosView(livePhotos: livePhotos)) {
+                                Text("Media.Photos.live (\(livePhotos.count))")
+                            }
                         }
-                        NavigationLink(destination: AlbumsView(albums: smartAlbums)) {
-                            Text("\(smartAlbums.count) Smart albums")
+
+                        if let depthEffectPhotos = Media.LazyPhotos.depthEffect {
+                            NavigationLink(destination: PhotosView(photos: depthEffectPhotos)) {
+                                Text("Photos.depthEffect (\(depthEffectPhotos.count))")
+                            }
+                        }
+
+                        if let hdrPhotos = Media.LazyPhotos.hdr {
+                            NavigationLink(destination: PhotosView(photos: hdrPhotos)) {
+                                Text("Photos.hdr (\(hdrPhotos.count))")
+                            }
+                        }
+
+                        if let panoramaPhotos = Media.LazyPhotos.panorama {
+                            NavigationLink(destination: PhotosView(photos: panoramaPhotos)) {
+                                Text("Photos.panorama (\(panoramaPhotos.count))")
+                            }
+                        }
+
+                        if let screenshotPhotos = Media.LazyPhotos.screenshot {
+                            NavigationLink(destination: PhotosView(photos: screenshotPhotos)) {
+                                Text("Photos.screenshot (\(screenshotPhotos.count))")
+                            }
                         }
                     }
 
                     Section {
-                        NavigationLink(destination: AudiosView(audios: Audios.all)) {
-                            Text("Audios.all")
+                        if let allVideos = LazyVideos.all {
+                            NavigationLink(destination: VideosView(videos: allVideos)) {
+                                Text("Videos.all (\(allVideos.count))")
+                            }
                         }
-                    }
 
-                    Section {
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.all)) {
-                            Text("Media.Photos.all")
+                        if let highFrameRatesVideos = LazyVideos.highFrameRates {
+                            NavigationLink(destination: VideosView(videos: highFrameRatesVideos)) {
+                                Text("Videos.highFrameRates (\(highFrameRatesVideos.count))")
+                            }
                         }
-                        NavigationLink(destination: LivePhotosView(livePhotos: Media.Photos.live)) {
-                            Text("Media.Photos.live")
-                        }
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.depthEffect)) {
-                            Text("Photos.depthEffect")
-                        }
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.hdr)) {
-                            Text("Photos.hdr")
-                        }
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.panorama)) {
-                            Text("Photos.panorama")
-                        }
-                        NavigationLink(destination: PhotosView(photos: Media.Photos.screenshot)) {
-                            Text("Photos.screenshot")
-                        }
-                    }
 
-                    Section {
-                        NavigationLink(destination: VideosView(videos: Videos.all)) {
-                            Text("Videos.all")
+                        if let streamsVideos = LazyVideos.streams {
+                            NavigationLink(destination: VideosView(videos: streamsVideos)) {
+                                Text("Videos.streams (\(streamsVideos.count))")
+                            }
                         }
-                        NavigationLink(destination: VideosView(videos: Videos.highFrameRates)) {
-                            Text("Videos.highFrameRates")
-                        }
-                        NavigationLink(destination: VideosView(videos: Videos.streams)) {
-                            Text("Videos.streams")
-                        }
-                        NavigationLink(destination: VideosView(videos: Videos.timelapses)) {
-                            Text("Videos.timelapses")
+
+                        if let timelapsesVideos = LazyVideos.timelapses {
+                            NavigationLink(destination: VideosView(videos: timelapsesVideos)) {
+                                Text("Videos.timelapses (\(timelapsesVideos.count))")
+                            }
                         }
                     }
 
@@ -223,9 +261,9 @@ struct RootScreen: View {
             if !Media.isAccessAllowed {
                 requestPermission()
             } else {
-                userAlbums = Albums.user
-                cloudAlbums = Albums.cloud
-                smartAlbums = Albums.smart
+                userAlbums = LazyAlbums.user
+                cloudAlbums = LazyAlbums.cloud
+                smartAlbums = LazyAlbums.smart
             }
         }
     }
@@ -238,9 +276,9 @@ private extension RootScreen {
             case .success:
                 permissionGranted = true
                 permissionError = nil
-                userAlbums = Albums.user
-                cloudAlbums = Albums.cloud
-                smartAlbums = Albums.smart
+                userAlbums = LazyAlbums.user
+                cloudAlbums = LazyAlbums.cloud
+                smartAlbums = LazyAlbums.smart
             case .failure(let error):
                 permissionGranted = false
                 permissionError = error

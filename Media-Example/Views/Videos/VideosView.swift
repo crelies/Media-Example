@@ -10,25 +10,33 @@ import MediaCore
 import SwiftUI
 
 struct VideosView: View {
-    let videos: [Video]
+    let videos: LazyVideos
 
     var body: some View {
-        List(videos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { video in
-            NavigationLink(destination: VideoView(video: video)) {
-                if let creationDate = video.metadata?.creationDate {
-                    Text(creationDate, style: .date)
-                } else {
-                    Text(video.id)
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(0..<videos.count, id: \.self) { index in
+                    if let video = videos[index] {
+                        NavigationLink(destination: VideoView(video: video)) {
+                            HStack {
+                                if let creationDate = video.metadata?.creationDate {
+                                    Text(creationDate, style: .date) + Text("\n(\(video.id.prefix(5).map(String.init).joined()))").font(.footnote)
+                                } else {
+                                    Text(video.id)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(16)
+                        }
+                    }
                 }
             }
+            .padding()
         }
-        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Videos", displayMode: .inline)
-    }
-}
-
-struct VideosView_Previews: PreviewProvider {
-    static var previews: some View {
-        VideosView(videos: [])
     }
 }

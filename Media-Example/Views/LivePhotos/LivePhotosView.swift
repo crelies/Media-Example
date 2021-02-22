@@ -10,27 +10,33 @@ import MediaCore
 import SwiftUI
 
 struct LivePhotosView: View {
-    let livePhotos: [LivePhoto]
+    let livePhotos: LazyLivePhotos
 
     var body: some View {
-        List(livePhotos.sorted(by: { ($0.metadata?.creationDate ?? Date()) < ($1.metadata?.creationDate ?? Date()) })) { livePhoto in
-            NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
-                if let creationDate = livePhoto.metadata?.creationDate {
-                    Text(creationDate, style: .date)
-                } else {
-                    Text(livePhoto.id)
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(0..<livePhotos.count, id: \.self) { index in
+                    if let livePhoto = livePhotos[index] {
+                        NavigationLink(destination: LivePhotoView(livePhoto: livePhoto)) {
+                            HStack {
+                                if let creationDate = livePhoto.metadata?.creationDate {
+                                    Text(creationDate, style: .date) + Text("\n(\(livePhoto.id.prefix(5).map(String.init).joined()))").font(.footnote)
+                                } else {
+                                    Text(livePhoto.id)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(16)
+                        }
+                    }
                 }
             }
+            .padding()
         }
-        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle("Live Photos", displayMode: .inline)
     }
 }
-
-#if DEBUG
-struct LivePhotosView_Previews: PreviewProvider {
-    static var previews: some View {
-        LivePhotosView(livePhotos: [])
-    }
-}
-#endif
