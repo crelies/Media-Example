@@ -26,7 +26,16 @@ struct CameraSection: View {
             .fullScreenCover(isPresented: $isCameraViewVisible, onDismiss: {
                 isCameraViewVisible = false
             }) {
-                try? Camera.view { _ in }
+                let result = Result {
+                    try Camera.view { _ in }
+                }
+
+                switch result {
+                case let .success(view):
+                    view
+                case let .failure(error):
+                    Text(error.localizedDescription)
+                }
             }
 
             #if !targetEnvironment(macCatalyst)
