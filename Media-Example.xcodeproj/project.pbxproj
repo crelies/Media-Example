@@ -33,6 +33,9 @@
 		B9B2A34625E4600600DC3A4C /* VideosSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A34525E4600600DC3A4C /* VideosSection.swift */; };
 		B9B2A34925E4600D00DC3A4C /* CameraSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A34825E4600D00DC3A4C /* CameraSection.swift */; };
 		B9B2A34E25E460B400DC3A4C /* BrowserSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A34D25E460B400DC3A4C /* BrowserSection.swift */; };
+		B9B2A35425E850C400DC3A4C /* LazyTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A35325E850C400DC3A4C /* LazyTree.swift */; };
+		B9B2A35925E85A3100DC3A4C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A35825E85A3100DC3A4C /* Node.swift */; };
+		B9B2A35C25E8633E00DC3A4C /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B2A35B25E8633E00DC3A4C /* LazyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +82,9 @@
 		B9B2A34525E4600600DC3A4C /* VideosSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosSection.swift; sourceTree = "<group>"; };
 		B9B2A34825E4600D00DC3A4C /* CameraSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSection.swift; sourceTree = "<group>"; };
 		B9B2A34D25E460B400DC3A4C /* BrowserSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserSection.swift; sourceTree = "<group>"; };
+		B9B2A35325E850C400DC3A4C /* LazyTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyTree.swift; sourceTree = "<group>"; };
+		B9B2A35825E85A3100DC3A4C /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B9B2A35B25E8633E00DC3A4C /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,7 @@
 				B9A3D28B238ACDE900648070 /* ActivityView.swift */,
 				B9B2A34D25E460B400DC3A4C /* BrowserSection.swift */,
 				B9B2A34825E4600D00DC3A4C /* CameraSection.swift */,
+				B9B2A35B25E8633E00DC3A4C /* LazyView.swift */,
 				B9B2A34225E45FF500DC3A4C /* PhotosSection.swift */,
 				B97D915C238986DD00A617DC /* RootScreen.swift */,
 				B9B2A34525E4600600DC3A4C /* VideosSection.swift */,
@@ -159,6 +166,7 @@
 				B9B2A31925E0474500DC3A4C /* Audios */,
 				B9B2A31725E0473100DC3A4C /* LivePhotos */,
 				B9B2A31625E0470A00DC3A4C /* Photos */,
+				B9B2A35725E85A2500DC3A4C /* Tree */,
 				B9B2A31825E0473C00DC3A4C /* Videos */,
 			);
 			path = Views;
@@ -224,6 +232,15 @@
 				B9B2A33B25E1348300DC3A4C /* Equatable+Hashable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B9B2A35725E85A2500DC3A4C /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				B9B2A35325E850C400DC3A4C /* LazyTree.swift */,
+				B9B2A35825E85A3100DC3A4C /* Node.swift */,
+			);
+			path = Tree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,12 +324,14 @@
 				B999836A2389908900F74BC1 /* AlbumView.swift in Sources */,
 				B9B2A34625E4600600DC3A4C /* VideosSection.swift in Sources */,
 				B99983702389934300F74BC1 /* LivePhotosView.swift in Sources */,
+				B9B2A35925E85A3100DC3A4C /* Node.swift in Sources */,
 				B9B2A33725E1344400DC3A4C /* Item.swift in Sources */,
 				B99983782389C83D00F74BC1 /* LivePhotoView.swift in Sources */,
 				B9B2A31F25E0487E00DC3A4C /* ExampleApp.swift in Sources */,
 				B999836E2389933900F74BC1 /* AudiosView.swift in Sources */,
 				B999837C2389EFA400F74BC1 /* VideoView.swift in Sources */,
 				B9B2A34925E4600D00DC3A4C /* CameraSection.swift in Sources */,
+				B9B2A35425E850C400DC3A4C /* LazyTree.swift in Sources */,
 				B999836C2389933300F74BC1 /* PhotosView.swift in Sources */,
 				B9B2A34E25E460B400DC3A4C /* BrowserSection.swift in Sources */,
 				B9B2A34325E45FF500DC3A4C /* PhotosSection.swift in Sources */,
@@ -325,6 +344,7 @@
 				B999837A2389EDA000F74BC1 /* PhotoView.swift in Sources */,
 				B97D91462388771D00A617DC /* ContentView.swift in Sources */,
 				B99983742389938200F74BC1 /* Extensions.swift in Sources */,
+				B9B2A35C25E8633E00DC3A4C /* LazyView.swift in Sources */,
 				B999836823898FA200F74BC1 /* AlbumsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

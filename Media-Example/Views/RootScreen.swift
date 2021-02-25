@@ -29,9 +29,12 @@ struct RootScreen: View {
             if permissionGranted || Media.isAccessAllowed {
                 List {
                     Section {
+                        // TODO:
 //                        NavigationLink(destination: VideosView(videos: videos)) {
 //                            Text("@FetchAssets videos")
 //                        }
+                        
+                        // TODO:
 //                        NavigationLink(destination: AlbumsView(albums: albums)) {
 //                            Text("@FetchAlbums smart")
 //                        }
@@ -41,6 +44,13 @@ struct RootScreen: View {
                         if let userAlbums = userAlbums {
                             NavigationLink(destination: AlbumsView(albums: userAlbums)) {
                                 Text("User albums (\(userAlbums.count))")
+                            }
+
+                            let item = Item.albums(albums: userAlbums)
+                            NavigationLink(destination: ScrollView {
+                                LazyTree(node: item, children: \.children)
+                            }) {
+                                Text("Lazy Tree")
                             }
                         }
 
