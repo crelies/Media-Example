@@ -50,13 +50,21 @@ struct RootScreen: View {
                 List {
                     Section {
                         Button(action: {
+                            Media.requestCameraPermission { result in
+                                debugPrint(result)
+                            }
+                        }) {
+                            Text("Trigger camera permission request")
+                        }
+
+                        Button(action: {
                             if Media.currentPermission == .limited {
                                 isLimitedLibraryPickerPresented = true
                             } else {
                                 requestPermission()
                             }
                         }) {
-                            Text("Trigger permission request")
+                            Text("Trigger photo library permission request")
                         }
                         .fullScreenCover(isPresented: $isLimitedLibraryPickerPresented, onDismiss: {
                             isLimitedLibraryPickerPresented = false
@@ -135,7 +143,7 @@ struct RootScreen: View {
                     Text(error.localizedDescription)
 
                     Button(action: requestPermission) {
-                        Text("Trigger permission request")
+                        Text("Trigger photo library permission request")
                     }
                 }
             }
