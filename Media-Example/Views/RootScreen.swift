@@ -11,12 +11,18 @@ import MediaSwiftUI
 import SwiftUI
 
 struct RootScreen: View {
+    private enum PermissionState: Equatable {
+        case granted
+        case loading
+        case failed(_ error: NSError)
+    }
+
     @State private var userAlbums: LazyAlbums?
     @State private var cloudAlbums: LazyAlbums?
     @State private var smartAlbums: LazyAlbums?
 
-    @State private var permissionGranted: Bool = false
-    @State private var permissionError: PermissionError?
+    @State private var permissionState: PermissionState = .loading
+    @State private var isLimitedLibraryPickerPresented = false
 
     @FetchAssets(sort: [Media.Sort(key: .creationDate, ascending: true)])
     private var videos: [Video]
@@ -26,14 +32,53 @@ struct RootScreen: View {
 
     var body: some View {
         NavigationView {
-            if permissionGranted || Media.isAccessAllowed {
+            switch permissionState {
+            case .loading:
+                ProgressView()
+                    .onAppear {
+                        if !Media.isAccessAllowed {
+                            requestPermission()
+                        } else {
+                            permissionState = .granted
+
+                            userAlbums = LazyAlbums.user
+                            cloudAlbums = LazyAlbums.cloud
+                            smartAlbums = LazyAlbums.smart
+                        }
+                    }
+            case .granted:
                 List {
+                    Section {
+                        Button(action: {
+                            if Media.currentPermission == .limited {
+                                isLimitedLibraryPickerPresented = true
+                            } else {
+                                requestPermission()
+                            }
+                        }) {
+                            Text("Trigger permission request")
+                        }
+                        .fullScreenCover(isPresented: $isLimitedLibraryPickerPresented, onDismiss: {
+                            isLimitedLibraryPickerPresented = false
+                        }) {
+                            let result = Result {
+                                try Media.browser { _ in }
+                            }
+                            switch result {
+                            case let .success(view):
+                                view
+                            case let .failure(error):
+                                Text(error.localizedDescription)
+                            }
+                        }
+                    }
+
                     Section {
                         // TODO:
 //                        NavigationLink(destination: VideosView(videos: videos)) {
 //                            Text("@FetchAssets videos")
 //                        }
-                        
+
                         // TODO:
 //                        NavigationLink(destination: AlbumsView(albums: albums)) {
 //                            Text("@FetchAlbums smart")
@@ -85,24 +130,14 @@ struct RootScreen: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationBarTitle("Examples")
-            } else {
+            case let .failed(error):
                 VStack(spacing: 20) {
-                    if let permissionError = permissionError {
-                        Text(permissionError.localizedDescription)
-                    }
+                    Text(error.localizedDescription)
 
                     Button(action: requestPermission) {
                         Text("Trigger permission request")
                     }
                 }
-            }
-        }.onAppear {
-            if !Media.isAccessAllowed {
-                requestPermission()
-            } else {
-                userAlbums = LazyAlbums.user
-                cloudAlbums = LazyAlbums.cloud
-                smartAlbums = LazyAlbums.smart
             }
         }
     }
@@ -113,14 +148,13 @@ private extension RootScreen {
         Media.requestPermission { result in
             switch result {
             case .success:
-                permissionGranted = true
-                permissionError = nil
+                permissionState = .granted
+
                 userAlbums = LazyAlbums.user
                 cloudAlbums = LazyAlbums.cloud
                 smartAlbums = LazyAlbums.smart
             case .failure(let error):
-                permissionGranted = false
-                permissionError = error
+                permissionState = .failed(error as NSError)
             }
         }
     }
